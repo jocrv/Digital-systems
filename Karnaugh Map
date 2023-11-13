@@ -1,0 +1,72 @@
+the Karnaugh Map, a graphical simplification method created by Edward Veitch and perfected by telecommunications engineer Maurice Karnaugh.
+
+We will see the theoretical basis that makes the abacus viable, capable of, from Truth Tables, constructing minimal canonical expressions.
+
+We will also learn how to apply the abacus in situations with two or three logical variables.
+
+Goals
+Compare traditional versus agile methodologies;
+Identify tools for software development.
+In previous classes we saw processes that allow the definition and tabular or algebraic representation of logical functions.
+
+We know Boolean Algebra, which allows us to minimize logical expressions.
+
+Minimum canonical logic expressions provide combinational circuits with a minimum number of gates, which optimizes the operation, energy consumption, construction cost and performance of the designed artifact.
+
+The Karnaugh Map is an abacus that allows the application of the axioms, properties and theorems of Boolean Algebra, automatically. The idea is to construct a diagram so that each unit distant term is adjacent and then apply operations that translate into algebraic manipulations. For a good understanding of the process, we need to define what unitary distant terms are.
+
+Two terms are unit distant if:
+They are composed of the same variables.
+
+two
+There is a single logically negated variable between these terms.
+
+
+Simplifying the notation a little, we will represent the term by a binary number. The negated variable associated with the digit 0 and not negated with the digit 1. Thus, for example, the term 𝐴𝐵 ̅𝐶𝐷 is represented by the sequence 1011 and the term 𝐴𝐵𝐶𝐷 ̅ by the sequence 1110.
+
+Attention
+An n-bit binary number (a bit is a binary digit) has n unit distant binary numbers. For example: The binary number 0 has a single distant number, the number 1; the number 00 has two unitary distant numbers 01 and 10; the number 000 has three distant unitary numbers 001, 010 and 100, and so on.
+
+Karnaugh realized that it is possible to construct diagrams in which all adjacent numbers (horizontally or vertically) are units apart. Let's look at these diagrams.
+
+
+
+In diagram 1, it can be seen that 0 is adjacent to 1 and these numbers are unitary apart.
+
+
+Diagram 2 is constructed by vertically mirroring diagram 1; thus, diagram 2 has two lines, in which, in the first line, the digit 0 is added to the left of each bit and, in the second line, the digit 1 is added, obtaining diagram 2 as written.
+
+In diagram 2, it is observed that 00 is one unit away from 01 (horizontal) and 10 (vertical); 01 is unity distant from 00 (horizontal) and 11 (vertical); 10 is unity distant from 00 (vertical) and 11 (horizontal); and finally, 11 is unity distant from 10 (horizontal) and 01 (vertical).
+
+
+Diagram 3 is diagram 2 mirrored to the right (Figure 1). To the left of the mirror, binaries receive the leading digit 0; to the right of the mirror, binaries receive the digit 1 to the left, resulting in diagram 3.
+
+We have already seen that each three-bit binary has three unit distant numbers. If we analyze binary 011 in diagram 3, we will see that: 010 and 111 are horizontally adjacent and 001 is vertically adjacent. However, which ones are adjacent to 000, for example? We know there are three, but in the diagram there are only two: 001 (horizontal) and 010 (vertical). Where is the third one? We know that it exists and we know how to calculate it: just deny one of the 000 bits. So we have 100, 010 (vertical), 001 (horizontal). Where is 100 on the diagram? Analyzing, we see that 100 is at the other end of the line. Thus, we conclude that the ends of the diagram are adjacent.
+
+
+Diagram 4 is constructed in a similar way to diagram 3, simply mirroring it vertically, as shown in figure 2.
+
+
+
+The construction process is analogous to the 3-bit diagram (figure 1). In yellow, the unitary distant binaries at 0110 are highlighted: 0010, 0100 (horizontal) and 0111, 1110 (vertical).
+
+Once the construction of the diagram is understood, we will see how the abacus can simplify logical expressions. Let's analyze two unitary distant elements in the 4-bit diagram: Let them be 0010 and 0110. These two binaries translate into the terms: A B C D and A B C D.
+
+.
+Suppose these terms have truth value TRUE in a truth table that represents a hypothetical logical function. Thus, the logical expression that represents the function will contain them, being: 𝐹=… A B C D + A B C D.
+𝐹
+=
+…
+ 
+  In this expression, we can apply the distributive property of the AND operator over the OR, obtaining: 𝐹=… A C D (B+ B)= A B C.
+𝐹
+=
+
+When observing the binaries associated with the expressions 0010 and 0110, we realize that the association is 0010 with the term A B C D
+
+and 0110 to the term A B C D
+ 
+
+ 
+. Observing the terms, we see that the only variable that has a negated logical value among them is B, and it is the simplified one in algebraic manipulation. This is no coincidence and is the reason the abacus works.
+
