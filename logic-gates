@@ -1,0 +1,350 @@
+Logic gates;
+Boolean algebra;
+Minimization of logical expressions.
+
+We will get to know the Logic Gates used in digital circuit projects and understand their operation, their use and their electronic nature.
+
+Next, as a first step towards the design or analysis of digital circuits, we will see how these electronic components are composed to implement logical functions.
+
+Goals
+Describe logic gates;
+Describe the operation of logic gates;
+Use logic gates to implement logical functions in hardware.
+
+Concept 1: Canonical port behavior
+A logic gate has its name associated with its canonical behavior. For example, the logical gate and is associated with the logical operation and. However, an and logic gate can be associated with other logical operations, which are considered non-canonical behaviors.
+
+Concept 2: Positive logic and negative logic
+When we studied logical operations, we saw that logical operators and logical functions received the values V or F as input and also provided the values V or F as output. A logic gate does not receive or provide the value V or F as input or output rather the values 0 or 1. We call 0 or 1 the logical level and these values are associated with the differences in electrical potential used in the circuit for its activation. The value 1 is associated with the high level and the value 0 with the low level. These levels depend on the electronic technology of the door. For example, for TTL (Transistor Transistor Logic) technology, 0 is associated with the range 0 to 0.8 V and 1 is associated with 4.75 to 5.25 V.
+
+
+It is natural for us to associate 0 with the truth value F and 1 with the truth value V. This association is called Positive Logic and, as already said, it is the intuitive association.
+
+
+Positive logic is not the only possible association, one can associate the truth values F with 1 and V with 0; this association is called Negative Logic.
+We can use positive or negative logic at the input and output of the gate, or we can mix positive logic at the input and negative logic at the output and vice versa. Therefore, a single logic gate can implement up to four different logical operations, depending on how we associate the input and output with positive or negative logic.
+
+1940
+From the mid-1940s onwards, electronic technology took a major leap forward in its development. The large scale of production made costs cheaper and the electronics industry established itself as an important economic activity in industrialized countries. Initially, the main products were analogue equipment, such as radios and televisions.
+1960
+In the 1960s, the commercial availability of the transistor, another technological milestone, further developed this industry, miniaturizing still analog equipment, making those that were large and heavy fit inside a handbag.
+Still in the 1940s, several computer scientists defined the basic concepts that led to the computer as we know it today. Alan Touring and John Von Neumann stand out, the main creators of digital computing.
+
+The concepts developed by these scientists proved that the Touring Machine, composed of a tape (memory) and a control unit, capable of performing operations with the data contained on that tape, can solve any computable problem.
+
+Logic gates
+Logic gates are electronic circuits capable of behaving like logical operators (and, or, not, nand, nor, xor, xnor). Therefore, the circuit that implements a logic gate has n (n>=1) inputs and, normally, one output. Their operation is described by the operator's truth table that is implemented by the electronic circuit of each one.
+Inverter
+The inverter is the simplest logic gate, it has a single input and an output and its function is to negate the logical value of the input.
+It is worth discussing the Inverter symbology a little. In electronics, the triangle symbol is associated with amplification functionality. An amplifier is the circuit that provides power to an electrical signal, without changing its behavior.
+
+In digital electronics, the amplifier circuit is called a buffer and its function is to reinforce or regenerate a digital signal, that is, to return its electrical level to values within the standard of the technology used.
+
+ 
+Another important factor in the inverter symbology is the circumference (dot) at the door output. The correct way to interpret this little ball is that the buffer output is in negative logic. Thus, if electrical signal 1 is presented at the input, the output will be 0 and vice versa.
+
+Comment
+If we analyze the input and output from the point of view of positive logic, the logic gate behaves like the logical operation not, hence the name of the gate: Inverter.
+
+AND logic gate
+The inverter is the simplest logic gate, it has a single input and an output and its function is to negate the logical value of the input.
+
+Graphic symbol
+Operating truth table
+The operating truth table (table 1) is given as a function of the Logic Level: 0, low level; and 1, high level.
+
+Attention
+Do not confuse functioning level with truth value. In Positive Logic, 1 is associated with V and 0 is associated with F, however, in Negative Logic 1 is associated with F and 0 is associated with V. Note that Logic Level is an electrical quantity and not a logical one.
+
+ Table 1 – AND gate operation table
+A B A and B
+
+0 0 0 
+0 1 0 
+1 0 0 
+1 1 1
+Let's analyze the semantics of this truth table a little better. Note that we spell 0 or 1, not true or false; This is due to the fact that what is described is the electrical behavior of the logic gate. For example, in the first line, when receiving both inputs at a low logic level, written as 0 (zero), the gate output is the low logic level, 0.
+
+Attention
+The description of the gate in terms of logic level is immutable, that is, the circuits are built and the behavior of the gate is always the same.
+
+The next step is to associate the logic level with positive or negative logic. Initially we will see the association with positive logic.
+
+AND gate in positive logic (canonical gate behavior)
+   
+A B A and B
+   
+0=F 0=F 0=F 
+0=F 1=V 0=F 
+1=V 0=F 0=F 
+1=V 1=V 1=V
+Note that, in table 2, the AND logic gate implements the AND logic function in hardware. Therefore, this behavior is called Canonical Behavior.
+
+AND gate in negative logic
+ Table 3 – AND gate truth table in negative logic
+   
+A   	   B   	   A   and B   
+   
+0=V   	   0=V   	   0=V   
+0=V   	   1=F   	   0=V   
+1=F   	   0=V   	   0=V   
+1=F   	   1=F   	   1=F   
+Note that the truth table (table 3) is not of the logical AND function (the optics analyzed are the values V or F, not 0 and 1). If we remember the previous lesson, we will see that the truth table in terms of V or F is the truth table of the OR operator. That is, in negative logic, the AND logic gate behaves like the OR logic operator. For this reason, it is common to see the following symbols (figure 3).
+Operating truth table
+ Table 4 – OR gate operation table
+   
+A B A or B
+   
+0 0 0 
+0 1 1 
+1 0 1 
+1 1 1
+Table 4 describes the operation of the OR gate in terms of electrical levels. Note that the low level at the output is only obtained when both inputs are low.
+
+Truth table in positive logic, canonical behavior
+ Table 5 – OR gate canonical truth table
+   
+A B A or B
+   
+0=F 0=F 0=F 
+0=F 1=V 1=V 
+1=V 0=F 1=V 
+1=V 1=V 1=V
+The truth table of the canonical behavior of the OR gate is identical to the truth table of the OR operator, which only gives a FALSE result when both inputs are FALSE.
+
+Truth table in negative logic
+ Table 6 – OR gate truth table in negative logic
+   
+A B A or B
+   
+0=V 0=V 0=V 
+0=V 1=F 1=F 
+1=F 0=V 1=F 
+1=F 1=F 1=F
+
+Once again, it is worth highlighting that the electrical functioning of the logic gate is immutable. That is, electrically, the port always behaves as described in table 4. It is worth remembering that this table describes the behavior of the port in terms of logical level and not logical value.
+In negative logic, 0 is associated with TRUE and 1 with FALSE. Therefore, the behavior of the gate is not the OR operator but the AND operator. For this reason, it is common to see the OR logic gate represented by the following figure.
+
+ Figure 5 – Representation of the OR logic gate in negative logic.
+
+Let's see, for example, the composition of AND, OR and INVERTER gates to implement the logical function F = A + BC.
+
+ Figure 6– Circuit equivalent to the function .F = A + BC
+
+In figure 6, we have the inverter denying signal B, the AND gate applying the AND operation on signals C and B negated, that is, after passing through the inverter and, finally, the application of the OR gate making the conjunction of signals A and result of the operation implemented by the AND gate.
+
+NAND logic gate
+Graphic symbol
+ Figure 7– Representation of the NAND logic gate.
+
+Operating truth table
+ Table 7 – NAND gate operation table
+   
+A B A nand B
+   
+0 0 1 
+0 1 1 
+1 0 1 
+1 1 0
+Note that in table 7, the NAND gate only provides low-level output when both inputs are high.
+
+NAND gate truth table in positive logic, canonical gate behavior
+ Table 8 – NAND gate canonical truth table
+   
+A   B   A AND B   A NAND B
+0=F 0=F F 1=V 
+0=F 1=V F 1=V 
+1=V 0=F F 1=V 
+1=V 1=V V 0=F
+
+As an illustration, let's look at the behavior of the door (implemented operation) when we analyze the operation of the door from the following perspective:
+Entry into Positive Logic
+It is
+Negative Logic Output
+Table 9 illustrates the interpretation.
+
+ Table 9 – NAND gate, positive logic input, negative output
+   
+A B A AND B A NAND B
+   
+0=F 0=F F 1=F 
+0=F 1=V F 1=F 
+1=V 0=F F 1=F 
+1=V 1=V V 0=V
+
+Note that the electrical behavior of the door is the same, however, the logical interpretation of the result is different. In this perspective, the NAND gate implements the logical AND operation.
+
+NAND gate operation in negative logic at input and output
+ Table 10 – NAND gate, negative logic input
+   
+A B A AND B A NAND B
+   
+0=V 0=V V 1=F 
+0=V 1=F V 1=F 
+1=F 0=V V 1=F 
+1=F 1=F F 0=V
+
+In negative logic, the behavior of the gate, that is, the implemented logical operation is NOR not (A or B). We verified this by comparing the columns A OR B and A NAND B in table 10. Due to this behavior, the NAND gate can be represented with the symbol in the following figure.
+
+ Figure 8 – Representation of the NAND gate in negative logic for input and output.
+
+Still on the NAND gate symbol in figure 7 and the negative logic, it is worth noting a few things: For the input, the little ball, which is commonly associated with the inverter, indicates that the low level presented in one of the inputs has a TRUE logic value; the absence of the ball at the gate output indicates that the output of that gate is being denied in negative logic. In other words, in negative logic, the inverter ball indicates that the input or output is in negative logic and the absence of the ball indicates negation behavior.
+
+This analysis can be done on all combinations of optics for input and output, providing the following table.
+
+ Table 11 – NAND gate behavior
+
+The detailed analysis of the behavior of the NAND gate was carried out since the NAND operator is a complete functional and, therefore, it is usual to combine this gate with its different optics. For example, be the following circuit:
+
+ Figure 9 – Example circuit.
+
+1
+Ports P1 and P2
+They behave like inverters. The logical signal A, associated with the logical variable A, is presented simultaneously to both inputs of the gate, thus, at the output we have: A NAND A, which is not (A and A), which is not (A). The same happens in B.
+
+two
+Ports P1 and P2
+They behave like inverters. The logical signal A, associated with the logical variable A, is presented simultaneously to both inputs of the gate, thus, at the output we have: A NAND A, which is not (A and A), which is not (A). The same happens in B.
+
+ Figure 10 – Example circuit.
+
+Port P5 has been redesigned for its negative logic input and positive logic output optics. If we consider gates P3 and P4 as operating in positive logic at the input and in negative logic at the output, according to table 11, the logical function performed by P3 and P4 is AND; and by P5, OR. Therefore, the logic circuit in figure 8 implements the logic function F = AB + AB. This same result can be obtained algebraically considering only the canonical behavior of the gate. This example will be repeated in due course.
+
+Graphic symbol
+ Figure 11 – NOR logic gate.
+
+Operating truth table
+ Table 12 – NOR gate operation table
+   
+A B A or B
+   
+0 0 1 
+0 1 0 
+1 0 0 
+1 1 0
+Table 12 presents the behavior of the NOR gate, which presents a high level at the output when both inputs are at a low level.
+
+Analysis of the truth table of the NOR gate in positive logic, canonical behavior of the gate
+ Table 13 – Canonical truth table of the NOR gate
+   
+A B A AND B A NAND B
+   
+0=F 0=F F 1=V 
+0=F 1=V F 0=F 
+1=V 0=F F 0=F 
+1=V 1=V V 0=F
+Comment
+Table 13 shows that when we apply positive logic optics to the input and output of the NOR gate, we implement the NOR logic operation and, for this reason, this is the canonical behavior of the gate.
+
+The NOR logic function is also a complete functional. For this reason, the behavior of the NOR logic gate will be presented, as was done for the NAND gate, according to all possibilities of positive or negative logic optics, resulting in table 14.
+
+ Table 14 – NAND gate behavior
+
+XOR (or exclusive) logic gate
+The XOR (or exclusive) logic gate implements the XOR logic operator, which is written as follows: F=A⊗B
+
+. This operator is very important in computing, in fact, we will see during the course that several common operations in computing are performed with the XOR logical operation, for example, the sum of binary numbers and the calculation of parity. Furthermore, the XOR operator is a complete functional
+al.
+
+Attention
+F=A⊗B is equivalent to F=A_B
+
+It is
+
+A Graphic symbol
+ Figure 12 – XOR logic gate.
+
+Operating truth table
+ Table 15 – XOR gate operation table
+A B A XOR B F=A_B+AB_
+    
+0 0 0 0 
+0 1 1 1 
+1 0 1 1 
+1 1 0 0
+
+Table 15 shows the operation of the XOR gate, which only provides a high level output when only one of the inputs is high.
+
+XOR gate truth table in positive logic, canonical gate behavior
+ Table 16 – XOR gate canonical truth table
+A B A XOR B A XOR B
+   
+0=F
+0=F
+F
+0=F
+   
+0=F
+1=V
+V
+1=V
+   
+1=V
+0=F
+V
+1=V
+   
+1=V
+1=V
+F
+0=V
+The table presents the behavior of the XOR logic gate in positive logic, which is the same as the XOR logic operator.
+
+XNOR (or coincidence) logic gate
+A Graphic symbol
+ Figure 13 – XNOR gate (not exclusive or coincidental).
+
+Operating truth table
+ Table 17 – XNOR gate operation table
+A B A XOR B F=A_B_+AB
+ 
+   
+0 0 1 1 
+0 1 0 0 
+1 0 0 0 
+1 1 1 1
+Attention
+The logical function XNOR (or coincidence), written by the symbol F=A *B, is equivalent to F=A_B_+AB
+
+Composition of logic gates
+The simplest composition of logic gates occurs when the gate operates in canonical behavior, that is, in positive logic. To build a circuit that calculates a conjunction (or) of disjunctions (and), we use the OR and AND logic gates respectively. Undoubtedly, inverters are also used to implement the necessary negations.
+
+Example
+Let's look at an example, to implement the logical function F=ABC+AB 
+
+For this function we will use two inverters, to calculate A
+
+  and from B
+
+, a three-input AND logic gate for calculating ABC
+
+  and, a two-input AND logic gate for calculating AB
+
+  and finally a two-input OR logic gate to perform the operation or between the two terms of the expression. Figure 14 illustrates this circuit.
+
+ Figure 14 – Circuit equivalent to expression. F=ABC+AB
+
+If we look at figure 14, we can notice that the composition of a logical function is done at three levels.
+
+First level
+Looking at the figure from left to right, we observe at the first level that the inverters are responsible for denying the logic levels presented at the input. For the implemented function, it is necessary to deny signals A and B.
+
+Second level
+logic gates implement logical AND operations, making the disjunction (AND operation) of logical signals coherently negated according to the logical function.
+
+Third level
+The conjunction (OR operation).
+
+The implementation of the circuit using only NAND gates explores the use of negative and positive logic. For the first level, the inverters are implemented using a two-input NAND gate and simultaneously presenting the same logic signal at both gate inputs. Configured in this way, the NAND gate behaves like an inverter, as shown in figure 15.
+
+ Figure 15 – NAND configured as an inverter.
+
+At level 2, there are disjunctions, operation E. To implement these operations we will use NAND logic gates with positive logic optics at the input and negative at the output. We saw, in table 11, that, in this configuration, the NAND gate behaves like AND.
+
+ 
+At level 3, there is the conjunction, OR operation. To implement this operation we will use the NAND logic gate with negative logic optics at the input and positive at the output. In table 11, we saw that in this configuration, it behaves like OR.
+
+For the example logical function, the circuit would have the electrical diagram shown in the following figure.
+
+ Figure 16 – Expression F=ABC+AB
+with NAND gates.
