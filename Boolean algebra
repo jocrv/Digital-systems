@@ -1,0 +1,347 @@
+Boolean Algebra, which is the main tool for building digital circuits used in several modern electronic devices.
+
+We know the basic definitions, axioms, properties and theorems.
+
+Next, we will learn how to use this mathematical tool to simplify algebraic expressions.
+
+Goals
+Explain the theoretical basis of Boolean Algebra;
+Apply mathematical results to simplify logical expressions.
+
+Boolean algebra
+See some concepts.
+
+1
+
+An algebra is a mathematical construction that is based on: Definitions, axioms, properties and theorems. Basically, an algebra defines a set of rules (application of algebraic operations) and results that allow the mathematical manipulation of algebraic entities belonging to a given set.
+
+two
+
+A definition is a statement that explains a certain concept, for example, it is defined that a logical value is an element of the set {TRUE, FALSE}.
+
+3
+
+An axiom is an assumed truth, that is, an axiom is a statement considered true without dispute and without explanation.
+
+4
+
+A property is the possibility of changing the order of application of algebraic operations, without changing their result. In arithmetic, we have the distributive operation of multiplication, that is, for example, 5 x (2 + 3) = 5x2 + 5x3. Note that in the expression 5 x (2 + 3), the use of parentheses requires addition to be performed before multiplication. The distributive property of multiplication subverts this order without changing the result of the expression.
+
+5
+
+A theorem is a mathematical result that needs to be proven for its validity to be accepted.
+
+  Definitions
+We have already seen in class 1 the definition of Logical Value, which will be repeated as it is important for algebraic construction.
+
+Logical Value is defined as being an element of the set
+
+V = {V,F}
+where V is true and F is false.
+
+Also in class 1, the concept of Logical Variable was defined, which is a mathematical entity to which a logical value can be assigned, that is, V or F.
+Axioms
+These are the eighteen axioms of Boolean Algebra:
+
+A.1 If A = F then A⎯⎯⎯=V
+
+If A is false, then A is not true.
+A.2 If A = V then A⎯⎯⎯=F
+
+If A is true, then A is not false.
+A.3 A⎯⎯⎯=A
+
+The double slash over the logical variable A has the semantics of negating twice, that is, applying the logical operator not twice, not (not A) is equal to A.
+A.4 F . F = F The logical value false AND – the logical value false equals false. This was seen in the Truth Table of Logic Operation E, table 3 of class 1.
+A.5 V . V = V The logical value true AND – the logical value true equals true. This was also seen in the Truth Table of the AND Logic Operation, in class 1, table 3.
+A.6V. F = F. V = F The logical value true AND – the logical value false equals false. Note that this axiom also guarantees the commutativity of the logical AND operation, that is, the order of the operands does not change the value of the operation.
+A.7 F + F = F The logical value false OR – the logical value false is equal to false, see class 1, table 4 (Truth Table of the OR Operator).
+A.8 V + V = V The logical value true OR – the true value false is equal to true, as defined in class 1, table 4.
+A.9 V + F = F + V = V The logical value true OR – the logical value false equals true. Note that this axiom also guarantees the commutativity of the logical OR operation, that is, the order of the operands does not change the value of the operation.
+A.10 F⎯⎯⎯=V and V=F
+
+The negation of the logical value false is true and vice versa.
+A.11 AA = A The result of the operation between a logical variable A AND – its negated value is always false.
+A.12 AA⎯⎯⎯ = F
+
+The result of the operation between a logical variable A AND – its negated value is always false.
+A.13 A + A = A The result of the logical operation between a variable A OR itself gives the result itself, that is, if A is false, the result of A + A is false. If A is true, A + A = V is true.
+A.14 A_A⎯⎯⎯ = V
+
+The result of the operation between a logical variable A OR – its negated value is always true.
+A.15 AF = F The result of applying the AND operation between a logical variable A and the true value false is false.
+A.16 AV = A The result of applying the AND operation between a logical variable A and the true value is the value of the logical variable A.
+A.17 A + F =A The result of applying the OR operation between a logical variable A and the truth value false is the truth value of the logical variable A.
+A.18 A + V = V The result of applying the OR operation between a logical variable A and the true truth value is the true truth value.
+Comment
+Note that there is no explanation. As already said, an axiom is an accepted truth, therefore, it does not require proof or explanation.
+
+Another important observation is that some axioms are redundant in relation to what we saw in class 1, when we talked about logical operations and presented the Truth Tables of operations. This is not a coincidence, the axiomatic basis of Boolean Algebra serves to enable the results that will follow.
+properties
+Like axioms, properties are truths that do not require proof. In Boolean Algebra the following properties apply:
+
+P.1
+Commutative property of AND operation
+This is AB = BA
+
+P.2
+Commutative property of OR operation
+This is A+B = B+A
+
+P.3
+Associative property of the AND operation
+This is A(BC) = (AB)C
+
+P.4
+Associative property of OR operation
+This is A+(B+C) = (A+B)+C
+
+P.5
+Distributive property of AND over OR
+This is A(B+C) = AB+AC
+
+P.6
+Distributive property of OR over AND
+This is A+(BC) = (AB)+(AC)
+
+  Theorems
+Unlike axioms and properties, which, in a certain way, are derived from axioms, theorems are not accepted truths and need to be proven mathematically. To prove a theorem, we can only use the axioms, properties and another theorem that has already been proven.
+
+De Morgan's theorems
+We will not do a formal proof of the theorem, we will use a truth table to show its validity.
+
+Table 1 – De Morgan's first theorem
+
+TAB
+
+B
+
+A+B
+
+AB AB
+
+F F V V V F V
+F V V F V F V
+V F F V V F V
+V V F F F V F
+In column 1 of table 1, we have variable A; in column 2, variable B; in column 3, variable A with its value negated; in column 4, variable B with its value negated. In column 5, we calculate A +B
+
+; in column 6, we calculate AB; and finally in 7, we negate the result of column 6 (this is the semantics of AB
+
+).Comparing column 7 with column 5, we see that A + B= AB
+
+As with De Morgan's first theorem, there will be no formal proof. Instead, we will use a truth table to show the validity of the result. However, before constructing the truth table, we emphasize that A B ≠AB
+
+  and that A+B ≠A+B
+
+.
+
+Table 2 – Truth table according to De Morgan's theorem
+
+TAB
+
+B
+
+A+B A+B
+
+A B
+
+F F V V F V V
+F V V F V F F
+V F F V V F F
+V V F F V F F
+In column 1 of table 2, we have variable A; in column 2, variable B; in column 3, variable A with its value negated; in column 4, variable B with its value negated; in column 5, we calculate A+B; in column 6, we calculate A+B
+
+; and finally in 7, we calculate A B
+
+. Comparing with column 6, we see the validity of the theorem.
+
+We will show the validity of the result using the truth table.
+
+Table 3 – Truth table of the first Absorption Theorem
+
+A B AB A + AB
+F F F F
+F V F F
+V F F V
+V V V V
+In column 1 of table 3, we have variable A; in column 2, variable B; in column 3, we calculate A AND B; and, finally, in column 4, we calculate A OR A AND B. The result of this calculation is the same as that in column 1, showing that the theorem is valid.
+We will show the validity through the truth table.
+
+Table 4 – Truth table of the Second Absorption Theorem
+
+TAB
+
+AB
+
+A+AB
+
+A+B
+F F V F F F
+F V V V V V
+V F F F V V
+V V F F V V
+In column 1 of table 4, we have variable A; in column 2, variable B; in column 3, we haveA
+
+; in column 4, we calculate AB
+
+; in column 5, we calculate A+AB
+
+; and finally in column 6, we calculate A+B. The result of this calculation is the same as that in column 5, showing that the theorem is valid.
+As a complement, we will show that . This observation is important because the difference in spelling is subtle. Let's use a truth table to show this.
+
+A
+
+B
+
+A
+
+B
+
+AB
+
+AB
+
+AB
+
+F F V V F V V
+F V V F F F V
+V F F V F F V
+V V F F V F F
+Table 5 calculates the expressions A B
+
+  and AB
+
+. The truth table columns are completely different, showing that A B
+  and AB
+
+  are not equivalent.
+
+Analogous reasoning can be done for A+ B
+
+  and A+B
+
+, which are also not equivalent.
+
+Algebraic manipulation
+There is no rule or algorithm that we can apply to simplify an algebraic expression by manipulation using axioms, properties and theorems. In fact, to simplify an expression, we must use sensitivity and practice with exercises.
+
+Comment
+Later in the course, we will see an algorithm capable of simplifying an algebraic expression and, in fact, we will use this algorithm to perform the simplification. However, let's take advantage of the study of algebraic manipulation to see important concepts.
+
+  Canonical form of a Boolean function
+A logical function is said to be in canonical form if and only if the logical expression that describes it is a conjunction (OR) of disjunctions (AND).
+In canonical form, the NOT operator can only be applied to one variable. Therefore, the expression: F =AB + C
+
+  is not in canonical form, but F =AB + C
+
+  is in canonical form.
+
+ 
+Once again it is worth highlighting that the expressions F =AB + C
+
+  and F =A B + C
+
+  They are not equivalent even though they have very similar spellings. The use of operators other than NOT, AND and OR is also not permitted. Therefore, the function F =AB ⊕ C
+
+, is not in canonical form, since the XOR operator is present in the expression.
+
+Minimum canonical form
+
+ 
+The minimal canonical form is the logical expression of a logical function written with as few logical operators (AND, OR) as possible.
+
+Example
+Let's look at the logical function F =D + B + ACD
+
+. At first glance, it appears that the function is in minimal canonical form, there is no applicable axiom, there is no applicable property, and even the theorems we have seen cannot be applied. However, if we look more closely at the terms of the expression: D + ACD
+
+, we will see that Theorem T.4 can be applied.
+
+This is not obvious, in the statement of T.4, we have that: A + AB=A+B
+
+. However, if we let A =X
+
+  and replace A with X
+
+  in the statement of T.4, we will have: X + XB = X + B
+
+. However, axiom A.3 says that X =X
+
+, therefore, we can rewrite X + DB = X + B
+
+. Let's go back to the highlighted terms: D + ACD
+; compare with X + DB
+
+. In other words, it is possible to apply theorem T.4, simplifying the expression to F=D + B + AC
+
+We will use a truth table to show the validity of the manipulation (table 6).
+
+Table 6 – Comparison between the expressions F = D +BD+AC
+
+  and F = D +BD+ACD
+
+
+A B C D D
+
+ACDAC D+B+AC
+
+D+B+ACD
+
+F F F F V F F V V
+F F F V F F F F F
+F F V F V V F F V
+F F V V F F F F F
+F V F F V F F V V
+F V F V F F F V V
+F V V F V F F V V
+F V V V F F F V V
+V F F F V F F V V
+V F F V F F F F F
+V F V F V F V V V
+V V F F V F F V V
+V V F V F F F V V
+V V V F V F V V V
+V V V V F V V V V
+Note that the columns that represent the results of the analyzed operations are identical, showing the equivalence between the expressions. The example illustrates that algebraic manipulation is not always obvious and it is not a simple task to conclude that a logical function is in minimal canonical form.
+
+Let's see in another, simpler example, step by step, which operations simplify the logical expression.
+
+Example
+Let the logical function F = ABCD + ABCD + ABCD + ABCD
+
+As said, there is no rule, however, looking at the terms of the expression, we see that AB is present in all terms. Therefore, we apply property P.5: Distributivity of AND over OR, resulting in the following expression:
+
+F = AB(CD + CD + CD + CD)
+
+Repeating the reasoning, we can apply P.5 in the terms: CD + CD
+
+  and CD + CD
+
+, resulting in:
+
+F = AB(C(D+D)+C(D+D))
+
+)
+)
+Applying Axiom A.14 ((A+A =V)
+(
+
+)
+), we have: F=AB(CV + CV)
+
+Applying Axiom A.16 (AV = A
+
+), we have:
+
+Applying axiom A.14 once again, we have:
+
+F = AB(V)
+
+Applying axiom A.16, we have:
+
+F = AB
+
+Which is the minimum canonical expression.
+
+Let us draw some conclusions about the two examples we saw: The first, a not very obvious algebraic manipulation; and, secondly, a simpler one to make. The examples show a clear need for an algorithmic process for minimizing logical expressions. In fact, this algorithmic process exists and is called the Karnaugh Map, which will be seen in the next class.
