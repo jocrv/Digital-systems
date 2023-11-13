@@ -1,0 +1,220 @@
+From the mid-1940s onwards, electronic technology took a major leap forward in its development. The large scale of production made costs cheaper and the electronics industry established itself as an important economic activity in industrialized countries. Initially, the main products were analogue equipment, such as radios and televisions. 1960
+In the 1960s, the commercial availability of the transistor, another technological milestone, further developed this industry, miniaturizing still analog equipment, making those that were large and heavy fit inside a handbag.
+
+Still in the 1940s, several computer scientists defined the basic concepts that led to the computer as we know it today. Alan Touring and John Von Neumann stand out, the main creators of digital computing.
+
+The concepts developed by these scientists proved that the Touring Machine, composed of a tape (memory) and a control unit, capable of performing operations with the data contained on that tape, can solve any computable problem.
+
+Still based on the Touring results, it was determined that with a device capable of storing digital information (0 and 1) and logical operations and, or and it would not be possible to implement the Touring machine and, thus, solve any computable problem.
+
+The conjunction of these concepts made it possible to build digital computers with stored programs, like those of today. Therefore, studying Digital Systems is essential for good training as a computing professional.
+
+  Logical functions
+The mathematical basis for the development of a digital computer is Boolean Algebra. In the mid-19th century, George Boole developed a mathematical theory based on manipulating elements of a set with two values 0 and 1 or true and false. Let's conceptualize this algebra.
+
+The first concept of Boolean Algebra is the concept of logical values, which are the elements that will be manipulated by the algebraic construction. In Boolean Algebra, there are only two logical values: V – TRUE or F – FALSE.
+The second fundamental concept of Boolean Algebra is the idea of a logical variable. A logical variable is a mathematical entity to which a logical value can be assigned. For example, let A be a logical variable. When assigning A = F, the variable A carries the semantic value FALSE. A logical variable can only receive the logical values TRUE or FALSE.
+
+The third fundamental concept is the concept of Logical Operation or Logical Operator. There are two types of logical operators: Unary and binary. A unary operator is one that performs the operation on a logical variable and binary operators perform the operation on two variables.
+
+Due to the discrete nature of Boolean Algebra, a convenient way to represent logical operators is by using a table, the Truth Table. It is nothing more than a table that correlates the possible logical values associated with the logical input variables of that operator with the output.
+
+For unary operators, we have only two possibilities:
+
+A) The identity operator (IDT), defined by the following table
+
+The IDT(A)
+V V
+F F
+Table 1 – Identity operator
+
+There is no explanation for a logical operation, the operation is defined and an explanation for a definition is not sought. In this table we have two columns, the first, identified by the logical variable A, corresponds to the operator's input. The second, identified by the term IDT (A), corresponds to the operator's output. The second line of table 1 describes the first behavior of the identity operator. When it receives a logical variable with a true logical value, it outputs the true logical value. The third line describes the other possible behavior, that is, when the logical operator receives a variable with a false logical value, its output is the false logical value.
+
+B) The negation or not operator
+
+The logical operation not(A) can also be represented by the bar over the identifier of the logical variable A and represented by Ā
+
+A         Not(A)
+T          F
+F          V
+Table 2 – Operator not
+
+Binary operators take two logical variables as input.
+
+A) AND operator
+
+The logical operator and is normally denoted by the multiplication symbol. For example, z = AB has semantics in which the logical variable z receives the logical output value of the A and B operator.
+
+Once again, do not try to understand the definition of a logical operator, a tip for memorizing the behavior of the and operator is to realize that its output is only true when both the operator's input variables, A and B, are true simultaneously.
+
+B) OR operator
+
+The logical operator or is characterized by the use of the addition symbol. For example, z = A+B has semantics in which the logical variable z receives the logical output value of the operator A or B.
+A B A or B
+F F F
+F V V
+V F V
+V V V
+Table 4 – OR Operator
+
+The OR operator only provides false output when both input variables have a false logical value.
+
+C) NAND operator
+
+The NAND logical operator is represented by the negation of the AND operator. For example, z = A.B⎯⎯⎯⎯⎯⎯
+The semantics in which the logical variable z receives the negation of the logical output value of the operator A and B.
+
+A B A nand B
+F F V
+F V V
+V F V
+V V F
+Table 5 – Nand operator
+
+The NAND operator only gives false output when both input variables are true.
+D) NOR operator
+
+The logical operator NOR is represented by the negation of the OR operator. This is represented by a bar over the operation. For example, z = A+B⎯⎯⎯⎯⎯⎯⎯
+The semantics in which the logical variable z receives the negation of the logical output value of the operator A or B.
+
+A B A nor B
+F F V
+F V F
+V F F
+V V F
+Table 6 – Nor operator
+
+The NOR operator gives true output when both inputs are FALSE.
+
+E) XOR (or exclusive) operator
+
+The logical operator XOR is represented by the symbol ⨁. For example, z = (A⨁B). The semantics in which the logical variable z receives the logical output value of the logical operator A xor B.
+
+A B    A xor B
+F F     F
+F V     V
+V F     V
+V V     F
+Table 7 – xor operator
+
+The XOR (or exclusive) operator provides true output when only one of the input logical variables is true.
+
+Logical functions
+A logical function is a relationship between a finite set of logical variables (A, B, C, D, ..., Z) with the set {TRUE, FALSE}. Therefore, a simple way to represent a logical function F with n logical variables is to build a truth table with 2n lines relating the logical values of the logical variables with an element of the set {TRUE, FALSE}.
+
+For example, the logical function F(A,B,C) can be defined by the following table.
+
+The logical operator and is normally denoted by the multiplication symbol. For example, for two variables, z = AB has semantics in which the logical variable z receives the logical output value of the A and B operator.
+
+A B C D
+F F F F
+F F V F
+F V F F
+F V V F
+V F F F
+V F V F
+V V F F
+V V V V
+Table 8 – Truth table of the logical function F
+
+Another way to represent a logical function is using logical operators. To better understand this possibility, we will look at the concept of Full Functional.
+
+The concept of complete functional
+In mathematical logic, a set O of logical operators is said to be a complete functional if and only if it is possible to represent any logical function using operators belonging to the set O.
+
+The sets are functional complete: {and, or, not}, {nand}, {nor}, {xor}.
+
+To complete this concept, let's get to know the notation used in writing a logical function through the use of logical operators.
+Not operator spelling
+The not operator is written using a slash over the logical variable identifier. For example, to graph the logical function F=not(A), we write F = Ā.
+
+two
+Spelling of the operator and
+The and operator is written using the multiplication symbol; The following forms are accepted for the function F=A and B: F = A x B, F = A . B or, the most common form, which is
+F=AB.
+
+3
+Spelling of the operator or
+The or operator is written using the sum symbol. For example, to spell F=A or B, we write
+F = A + B.
+
+Let's look at an example of using the three operators simultaneously. Let's analyze the logical function F = ABC + ABC. The semantics of this function is: F = ((A and not(B)) and C) or ((not(A) and B) and C).
+
+It is worth highlighting that the parentheses of semantic translation are redundant, since the hierarchy of operations is sufficient to determine the order of operations.
+
+We saw two ways to express a logical function:
+
+The first,
+via Truth Table
+The second, through logical expressions – in our case, using the complete functional and, or and not.
+Let's now see how to transform one form into another, that is, how, using a truth table, to construct the logical expression; and, how, from a logical expression, construct a truth table.
+
+a) Constructing the logical expression from the truth table
+
+A B C D
+F F F V
+F F V F
+F V F F
+F V V V
+V F V F
+V V F F
+V V F F
+V V V F
+Table 9 – Truth Table of Logical Function F
+
+Another way to represent a logical function is using logical operators. To better understand this possibility, we will look at the concept of Full Functional.
+
+As we have already studied, the Truth Table denotes, by exhaustion, the logical values of all combinations of a logical function. Table 9, as it is a logical function of three variables, has 23 = 8 lines, all possible combinations of the truth value of each logical variable.
+
+To translate the Truth Table into a logical expression, we will focus on the rows whose function output value is TRUE. This occurs in rows 1, 4, and 5 of Table 9. Let's look at each row a little more closely.
+
+1
+
+Line 1 is true when the values of the logical variables are: A=F, B=F, C=F, simultaneously. Note that not(A)=V, not(B)=V and not (C)=V and that not(A) andnot (B) andnot(C) = V. That is, the first line of the Truth Table is translated for the expression ABC, . Note that this expression is only true when A=F, B=F and C=F simultaneously.
+
+2
+
+In line 4 of Table 6, the logical function is only true when A=F, B=V and C=V, simultaneously, being translated into expression ABC, which is only true when A has a truth value FALSE and B, C has a value True real.
+
+3
+
+Similarly, line 5 is translated into ABC expression. Thus, the Logical Function F will be true when line 1 or line 4 or line 5 are true, that is, F = ABC + ABC + ABC, which is the expression of the logical function of the Truth Table (table 9).
+
+The example presented illustrated the process of transforming the Truth Table into a Logical Expression. The process can be summarized as follows:
+Step 1
+Identify the rows in the Truth Table whose output is TRUE.
+
+To illustrate, let's look at one more example.
+
+A B C D
+1 F F F V
+2 F F V V
+3 F V F F
+4 F V V F
+5V F F F
+6 V F V V
+7 V V F F
+8 V V V V
+Table 10 – Logical Function Example
+
+In the Truth Table (Table 10) the lines are numbered for didactic purposes. Lines 1, 2, 6 and 8 are true. In line 1, A=F, B=F, C=F, resulting in the term ; in line 2, A=F, B=F, C=V, resulting in the term ; in line 6, A=V, B=F,C=V, resulting in the term ; in line 8, A=V, B=V, C=V, resulting in the term . The final result of translating the Truth Table into the Logical Expression is F = ABC⎯⎯⎯⎯⎯⎯⎯⎯ + AB⎯⎯⎯⎯⎯C + A⎯⎯⎯BC⎯⎯⎯ +ABC.
+
+Attention
+The presented process does not guarantee that the expression obtained is minimal, that is, it uses the smallest number of operators possible. It is possible that there is an equivalent logical expression (that provides the same Truth Table) using a smaller number of logical operators.
+
+b) Building the Truth Table from the Logical Expression F = ABC⎯⎯⎯⎯⎯⎯⎯⎯
+
+The process of building the Truth Table from the logical expression is simple: Just build the table, assign logical values to each logical variable and feed these values into the expression transcribing its result in the table. Remember that if the expression has n variables, the table will have 2n rows.
+
+For example, let's build the Truth Table for the expression . The expression has three logical variables, so the table will have 8 rows. To make things easier, I will insert some columns, which are unnecessary, but help to illustrate the process. These columns are highlighted in yellow.
+
+A B C ABC A̅B̅C̅
+V V V V F
+V V F F V
+V F V F V
+V F F F V
+F V V F V
+F V F F V
+F F V F V
+F F F F V
+Table 11 – Function Truth Table
