@@ -1,0 +1,151 @@
+Sequential circuits provide the output as a function of the inputs and also the internal state stored in a memory element. In this class, we will study the basic concepts for understanding and designing these circuits.
+
+We will see how to build logical circuits with the capacity to store information, enabling the storage of the current state of sequential circuits. Finally, we will learn how to employ these concepts to build a circuit that behaves like a given finite state machine.
+
+Goals
+Describe the finite state machine;
+Identify memory elements: Binary cells;
+Explain the concept of synchronism in Latchs and Flip-Flops.
+Unresolved situation with a combinational circuit
+In previous classes, we saw the construction of electronic circuits capable of implementing logical functions, that is, circuits whose output is a logical combination of the inputs. Remember that time is not an important factor in the design of combinational circuits, as we consider the result to be practically immediate.
+
+Can this type of abstraction solve any problem?
+The answer is no! A simple example of a situation that cannot be resolved with a combinational circuit is the traffic signal used on urban roads.
+
+The traffic signal for pedestrian crossings is already known to us, however, let's study it in more depth. Imagine signaling a pedestrian crossing on an urban road with a regular flow of vehicles. The signal is a device that interrupts or allows flow through the road according to a timer. The solution is simple, a device with three lights is installed on the road: Red, indicating that traffic must be stopped; yellow, indicating the change from open to interrupted flow; and, green, indicating that flow is allowed. Timers control the transition between these states.
+
+We need a formal tool to describe state changes in the device. The tool is the finite state machine or finite automaton.
+
+Source: Siobhan Dolezal / Pixabay
+
+The finite state machine or finite automaton
+
+Source: annca / Pixabay
+
+
+The finite state machine is a mathematical tool for describing the behavior of a system that evolves, discretely, over time. An internal configuration of the system is called a state and the machine changes state over time and/or with an external stimulus.
+
+ 
+One way to describe a finite state machine is through a graph, which is a mathematical entity: G = (V, E), with V being the finite set of nodes in the graph (states, in our case) and E being a set finite number of ordered pairs of nodes (possible state transitions, in our case). Thus, we can model a system that evolves discretely over time.
+
+To illustrate this situation, we will model the operation of a single traffic signal, the type used to close roads for pedestrians to cross. The system has three states, which we will call closed or red (VM), open or green (VD) and in transition or attention or yellow (AM). The signal remains open (VD) for the flow of cars for one minute; After this time, it changes state to transitioning (AM) for 6 seconds and then closed (VM) for 30 seconds, returning to the initial state after this time.
+
+  We will use graphical representation to show the state machine. States are circles and transitions are arrows connecting two states. Thus, the finite state machine is represented by the following graph. The double line in the VM state indicates that it is the initial state.
+
+ Figure 1 – Finite state machine for a traffic signal | Source: The author (2020).
+Having understood the concept of a state machine, let's understand how to represent a finite state machine. The states are represented by circles, each one having a name and, later on, a binary will be associated with them. The automaton changes state when an input variable takes on a certain value (true or false).
+
+Assuming that the variable is called input, we denote that the automaton changes state when the input is true, if the variable is spelled “input”, or changes state when the input is false, if the variable is spelled “(input) ̅ ”. The output variables also respect this convention, and it is usual for the output variables to remain at the level determined during the state transition as long as the automaton remains in that state.
+
+We represent entry and exit conditions by entry/exit. That said, let's improve the automaton shown previously.
+
+ Figure 2 – Automaton with output commands for timers | Source: The author (2020).
+
+Attention
+When transitioning to the VM state, the automaton gives a command to the external hardware, which counts down 30 seconds. At the end of this count, we call this timer overflow. The automaton receives the 30-second signal and changes state to VD, giving the command to start the 60-second count. At the end of the count, the automaton receives the 60 second signal and changes state to AM, starting the 6 second count. When the 6-second timer expires, the automaton restarts the cycle.
+
+When studying finite automata, we can observe that time is a fundamental factor, unlike combinational circuits in which time is abstracted. For correct functioning, the finite automaton needs to store its state.
+
+The electronic device that is capable of storing information over time is memory, so sequential circuits, which implement finite automata, must have memory, otherwise they will not be able to store state information.
+
+Schematically, a sequential circuit is an arrangement that has a state memory that feeds a combinational circuit, the next state decoder, which receives the current state and control variables of the circuit. See the arrangement below.
+
+ Figure 3 – Sequential circuit | Source: The author (2020).
+
+The next state decoder is a combinational circuit that we already know and know how to design. We need to see how to implement a circuit capable of retaining state information over time, that is, a memory.
+
+binary cell
+
+The binary cell is the simplest arrangement capable of storing a bit. It is composed of two NOR gates fed back as follows:
+
+ Figure 4 – Binary cell with NOR gates | Source: The author (2020).
+
+Let's see how it works. The first command is Set (S), storing bit 1 in the array. The Set command is given by presenting S=1 and R=0 at the cell entry. Let's see what happens.
+
+ Figure 5 – Set Command (S=1, R=0) | Source: The author (2020).
+
+In the Set (S=1, R=0) command, the first NOR gate (P1) receives 1 (S) and an undetermined value at its input, since we do not know what comes out at the second NOR gate. However, 1 OR any logical value is 1, however, there is an inverter at the output of the gate, so the output is 0. The second gate (P2) receives as input the value 0 from the first gate and the command R=0, 0+ 0=0, negated (the gate is NOR) 1. 1 is presented in the first gate, closing the cycle. Thus, the cell stores the value Q=1.
+The second command is Hold (S=0, R=0). Suppose we have just performed the Set command and the cell stores bit 1 (as shown previously). We want bit 1 to be stored in the cell. Thus, we command Hold (S=0, R=0). Let's see what happens next.
+
+ Figure 6 – Hold Command (R=0, S=0) | Source: The author (2020).
+
+In the Hold command (S=0, R=0), P1 receives 0 and 1 as input. The result is not (0+1) = 0, which is presented to port P2. The other input is also 0, the output is not (0+0)=1, closing the cycle. Note that as long as the inputs S=0 and R=0 are maintained, Hold command, the cell maintains the stored value Q=1.
+
+The third command is Reset (S=0, R=1), then the sequence of actions is shown.
+
+ Figure 7 – Reset Command (S=0, R=1) | Source: The author (2020).
+
+Port P2, upon receiving R=1, outputs not (1+X) = 0, which is presented to port P1, which outputs not (0+0)=1, completing the cycle. In the end, the cell stores the Q=0 bit.
+
+Next, the Hold command (R=0, S=0) after the Reset command keeps the Q=0 bit stored.
+
+ Figure 8 – Hold command (S=0, R=0) after the Reset command | Source: The author (2020).
+
+The combination R=1 and S=1 makes no sense and generates abnormal behavior in the cell. The result is unpredictable and therefore not considered. The following table summarizes the behavior of the RS cell.
+
+Source: The author (2020).
+
+Table 1 – RS Cell
+The table describes the behavior of sequential circuits. Note that, in addition to the columns with the S and R commands, we have the Qt and Qt+1 columns. The Qt column represents the current state and the Qt+1 column the state after receiving the command.
+
+Timing
+The concept of synchronism is fundamental in the study of sequential circuits. But what is synchronism? It is a well-defined temporal relationship between two events in time. When we think about synchronism, we think about events that occur at the same time, however, this is not true.
+
+Example
+If you arrange to meet someone at 1pm and the person arrives at 1pm, we recognize that there was a synchronous event. The time factor was respected and the meeting took place at the desired time. However, known delays are considered synchronous events. For example, pasta is cooked in boiling water and the cooking time is usually written on the package. So, if the pasta takes eight minutes to cook, eight minutes after adding the pasta to the pan, the food will be ready. If we add the pasta to the pan at 1pm, the product will be ready for consumption at 1:08pm. The pasta cooked event is synchronous with the put in the pan event.
+
+In other words, synchronous events are not necessarily simultaneous. However, simultaneous events are synchronous.
+Returning to the block diagram of sequential circuits, note that the commands to the memory elements are provided by the combinational circuit called the next state decoder. The decoder's response is immediate upon receiving a stimulus. We have already seen this in previous classes. However, the control variables of the next state decoder may not be presented simultaneously to this circuit and, if this occurs, unexpected commands will be presented to the memory block causing the machine to evolve into an unplanned state.
+
+The grid question is: How to solve this?
+
+The answer is: Including a synchronization signal, that is, a signal that indicates the moment when all decoder inputs of the next state already have their valid result and the memory block can consider the command valid. This signal is the clock signal.
+
+THE CLOCK SIGN
+The clock signal is an infinite sequence of 010101... The clock period is the elapsed time of a sequence 01 and the clock frequency is 1/clock period. For example, if we had a clock period of 10-3 s, the clock frequency would be f=1/10-3 Hz, that is, 1000 Hz or 1 KHz.
+
+In short, the clock signal indicates the moment in which the memory element must accept the commands received. Note that the RS cell obeys the received command whenever it is received. This type of behavior is asynchronous, since there is no temporal restriction on receiving the command.
+
+Source: The author (2020).
+
+Latchs and Flip-Flops
+Table 2 – RS Latch
+The introduction of the synchronism factor makes us call the memory element a latch or flip-flop. There is a subtle difference between these components. A latch accepts state transition commands as long as the clock level is high or low, depending on the component construction. For example purposes, let's check the RS Latch operating table, that is, a component that has the same behavior as the RS cell, however, it only accepts RS commands in the high clock period.
+
+We can see that the component ignores commands, that is, it retains the original stored information every time the clock is at level 0 and accepts commands only at high level 1.
+Let's assume, to simplify the explanation, that a latch is activated at a high clock level, as described previously. The following graph, called timing diagram, shows the exact moment of the component's state transition.
+
+ Figure 9 – RS Latch timing diagram | Source: The author (2020).
+
+Note that initially the latch stores bit 0 (Q is low) and that over time it receives two Set commands (S=1 R=0), the first at t1 and the second at t2. At t1, the clock level is low, therefore, the latch ignores the command and, at t2, the clock level is high, causing the latch to accept the command and store bit 1 (Q=1).
+
+Table 3 – D-latch
+The most common latch is the D-latch (Data Latch) which receives as input a bit at input d and stores the bit in its memory element. See the D-latch operating table and then its symbol.
+
+Source: The author (2020).
+
+ Figure 10 – D Latch, E (Enable) is the clock input Source: The author (2020).
+
+Note that with the clock at 0 it does not matter what is presented at input d, where Qt+1 is equal to Qt, that is, the memory element is not changed. However, with the clock high, at Qt+1, the data presented in d is stored.
+
+
+know more
+Another type of memory element is the flip-flop. Just like the latch and the binary cell, the flip-flop stores one bit. However, flip-flop timing is performed on the rising or falling edge of the clock. Thus, instead of allowing commands to be received over a period of time, the flip-flop allows commands to be received in an instant, at the exact moment of the clock transition.
+
+Source: The author (2020).
+
+Table 4 – Flip-Flop D
+We will study two types of flip-flops, the D and the JK. The D flip-flop is similar to the D latch, the difference lies in the D command that is accepted at the clock edge. Therefore, the following operating table is modified to illustrate the transition (in our case, on the rising edge of the clock). Afterwards, see the D Flip-Flop symbol.
+
+ Figure 11 – Flip-Flop D | Source: The author (2020).
+
+The input with the triangle demonstrates that the component is driven by the clock edge, that is, the component is a Flip-Flop. Note that the component stores the bit presented at its input d when receiving the rising edge of the clock at its synchronization terminal.
+
+Lastly, we will study the JK flip-flop. It has three command inputs: J (corresponding to the Set command), K (corresponding to the Reset command) and Clock. The J and K inputs are similar to the R and S inputs, that is, they implement the Set (J=1 K=0) and Reset (J=0 K=1) commands. However, in cell RS, when S=1 and R=1, the cell behaves unpredictably; In the JK flip-flop, when J=1 and K=1, the cell inverts the value stored in its memory element, that is, if it stored 0, it will store 1, or, if it stored 1, it will store 0.
+
+Note that the toggle behavior (J=1 and K=1) only makes sense if the synchronization is instantaneous, that is, if it occurs in an instant of time, not in an interval. In other words, there is no JK Latch. See below how the Flip-Flop JK works, the symbols of which are represented below.
+
+Table 5 – JK Flip-Flop
+Source: The author (2020).
+
+ Figure 12 – JK Flip-Flop | Source: The author (2020).
