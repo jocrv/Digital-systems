@@ -1,0 +1,166 @@
+The steps for designing a sequential circuit are: Design the finite automaton, determine the numbering of states and, finally, design the next state decoder. In this class, we will see the concepts necessary to correctly execute these steps.
+
+We will then study the dedicated sequential circuits, starting with the shift register, an important component of the arithmetic logic units (ALUs) of modern computers.
+
+Goals
+Design sequential circuits;
+Explain the relationship between the displacement operation and multiplication and division by 2;
+Identify shift registers.
+Steps to design a sequential circuit
+The process for designing a sequential circuit is simple: Just define the state machine, define the binary numbering of the states, design the combinational circuit, which is the next state decoder, and design the output decoder, if applicable. .
+
+The steps are:
+
+1
+Conception of the finite automaton according to the semantics of the problem;
+
+two
+Numbering of automaton states in binary;
+
+3
+Next state decoder design;
+
+4
+Output decoder design.
+
+Sequential circuit design
+To illustrate the process of designing sequential circuits, we will design the control system for a traffic light that activates the lights of two light signals installed at the intersection of streets A and B. We will not delve into the operation of the arrangement as it is already known. for all.
+
+In the modeling, we will adopt a single finite state machine, controlling signals A and B, installed on streets A and B, respectively. See, below, the already modeled automaton.
+Figure 1 – Signal automaton | Source: The author (2020).
+
+State 1 is the initial state of the automaton. In this situation, signal A is green and B is red. After thirty seconds, signal A switches to attention and signal B remains closed. Six seconds later, A is closed and B is open. Once again, after thirty seconds, A remains closed and B remains at attention. Finally, six seconds later, A returns to the open state and B closes.
+
+The next step is to assign binary numbers to the states. Let us remember that the element that stores the state is ultimately a binary cell, which can only store zero or one.
+
+Attention
+It was said that what stores the state is a binary cell since latches and flip-flops contain binary cells in their internal circuit.
+
+ (Source: Shutterstock).
+
+Returning to the traffic signal example, the state machine has four states. Thus, two flip-flops will be needed to store the binary that represents the state. We will make the following association: State 1 – 00, state 2 – 01, state 3 – 11, state 4 – 10. Note that this association is not intuitive, but, on the other hand, it is a gray code (distant unitary in states adjacent). This choice minimizes the chance of the state machine changing state randomly due to a glitch.
+
+Attention
+A glitch is a state transition not foreseen in the project, which may occur due to a bug or unwanted electronic effect. A glitch is not predictable in design.
+
+See below the state machine with the states numbered in binary.
+
+ Figure 2 – Machine with assigned states | Source: The author (2020).
+
+The next step is to design the next state decoder. For this step, we will admit that there are two timer circuits of 30 seconds and 6 seconds that are activated on the rising edge of the control signal, placing their output at 0, and, after the stipulated time, activate their output at 1. The diagram The following time illustrates the operation of the timer.
+
+ Figure 3 – Timer operating time diagram | Source: The author (2020).
+
+ Table 1 – Next state decoder truth table (Source: The author (2020).
+
+The inputs of the next state decoder are always composed of the current state and the control variables. In the case of traffic signal A, B (A most significant bit of the state, B least significant bit), C – 6s (6 second timer output) and D – 30s (30 second timer output).
+
+Based on this, we can construct the truth table of the next state decoder.
+
+
+Observing the automaton, we see that, in states 00 and 11, the automaton changes state when the 30-second timer expires (lines highlighted in red), otherwise it remains in the current state. And states 01 and 10 transition when the 6 second timer expires (lines highlighted in green).
+
+Attention
+It is worth noting that At and Bt are the bits that represent the current state and At+1 and Bt+1 represent the next state, that is, the output of the next state decoder.
+
+The next step is to choose the flip-flop used in the circuit design. JK flip-flops minimize the size of the next-state decoder. Therefore, we will use these flip-flops. So, we have to translate the next state from the previous table into flip-flop triggering. The result is this:
+
+ Table 2 – Truth table of the next state decoder with JK flip-flop. Source: The author (2020).
+
+In the table, we introduce four columns: Ja, Ka, Jb and Kb. They are populated according to the state transition. To simplify understanding, we will only analyze the transition of a variable and the J and K commands for this transition. Let's see this in the following table, whose inputs are At and At+1, and whose outputs are J and K.
+
+ Table 3 – Translation of state transitions for JK commands. Source: The author (2020).
+
+We then set up the Karnaugh maps for Ja, Ka, Jb and Kb, maps 1, 2, 3 and 4.
+
+
+Map 1 – Ja
+Source: The author (2020).
+
+
+Map 2 – Ka
+Source: The author (2020).
+
+
+Map 3 – Jb
+Source: The author (2020).
+
+
+Map 4 – Kb
+Source: The author (2020).
+
+Reading
+
+After the design of the next state decoder is completed, we will design the output decoder. We have to design 6sec, 30sec (timer trigger) and ARed, AYellow, AGreen and ARed, BYellow, BGreen, as follows.
+
+ Table 4 – Output decoder. Source: The author (2020).
+
+Some outputs are obvious and will not be calculated, resulting in the following circuit.
+
+ Figure 4 – Sequential traffic light control circuit | Source: The author (2020).
+
+Shift register
+
+Before we study shift registers, we will understand the shift left and shift right operations. Shift operations are essential for computation as every arithmetic logic unit has an associated shift register. The purpose of the shift register is to perform the multiplication or division of a binary by 2.
+
+On base 10 is easy to understand. When we multiply a number by ten, we shift its digits to the left, introducing the digit zero in the least significant digit.
+
+Example
+For example, 1432 x 10 = 14320, all digits were shifted to the right and the digit zero was introduced in the place relative to the order of units. Similarly, when we divide by 10, we shift the digits of the number to the right. For example, 32457 / 10 = 03245, the digit 7 is ignored and all others are shifted one position to the right.
+
+The analogous happens in binary. When we multiply by 2, 10 in binary, we shift the digits of the number to the left. For example, 73 in 8-bit binary is 01001001. If we multiply by two, that is, we shift to the left, we will have 10010010, which is 146. If we shift to the right, we will have 00100100, which is 36, result of dividing integer by two.
+
+ Figure 5 – 74194 – 4-bit shift register. Source: Texas Instruments (1981).
+
+The circuit responsible for executing the shift operation is the shift register. Just like MSI (Medium Scale of Integration) combinational circuits, shift registers are produced as integrated circuits and the most common implementation is the 74194, which is a four-bit bidirectional shift register. Its schematic diagram is represented below.
+
+The integrated circuit pins can be grouped by functionality: Control, Input and Output.
+
+Control pins: Clear (asynchronous), S0, S1 and clock.
+
+1
+The clear signal is activated in negative logic, that is, when clear = 0, all four register cells store zero independently of any other control signal or clock state (that's why we say that clear is asynchronous).
+
+two
+S0 and S1 determine the synchronous operation of the register. The operation is described below.
+
+ Table 5 – 74194 Operation – 4-bit shift register. Source: Fairchild Semiconductor Corporation (2000).
+
+01
+
+The first row of the table shows the asynchronous clear. Note that any other control signal does not matter as the register stores 0000, Qa, Qb, Qc and Qd.
+
+02
+
+The second line of the table shows the parallel load operation, S0=1 S1=1. Memory elements are loaded with the bits presented in parallel input a, b, c, d. Loading occurs on the rising edge of the clock, that is, the register behaves like a flip-flop. For example, if a=0, b=1, c=1 and d=1 were presented, with S0=1, S1=1 and on the rising edge of the clock, the memory elements would store Qa=0, Qb=q, Qc =1, Qd=1.
+
+03
+
+The third line shows a right shift operation, S0=0 and S1=1, on the rising edge of the clock. Bit z is stored in Qa, and a, b and c, which were stored in Qa, Qb and Qc, are shifted to Qb, Qc and Qd, respectively. For example, if 0 is presented on the right serial input, S0=0, S1=1 and Qa=1, Qb=0, Qc=0 and Qd=1, after the clock, we will have Qa=0, Qb=1, Qc =0 and Qd=0.
+
+04
+
+The fourth line is the left shift operation. The operation can be described analogously to the shift right operation.
+
+05
+
+The fifth line is the hold command, S0=0 and S1=0. In this command, the register keeps the data stored regardless of what is presented in the inputs.
+
+Internally, the shift register is constructed with the composition of components as shown below. Note that we can divide the schematic into two blocks: The memory elements, in this case, the RS flip-flops; and the next state decoder, which is made up of the set of gates at the top of the schematic.
+Figure 6 – Internal diagram of the 74194 shift register | Source: Texas Instruments (1981).
+
+Activity
+1. Design the combinational circuit that behaves like the automaton in the following figure, using JK flip-flops.
+Next state decoder table construction:
+
+
+
+Map of Ja:
+
+
+
+Ka Map:
+
+
+
+Jb and Kb = 1. The final circuit is:
