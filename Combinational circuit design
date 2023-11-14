@@ -1,0 +1,175 @@
+to design a combinational circuit using the mathematical tools learned so far in the Digital Systems discipline.
+
+We will also deal with some important direct applications, multiplexers and demultiplexers.
+
+Goals
+Define combinational circuits and the steps required for the project;
+Name the BCD, Gray and ASCII codes;
+Identify multiplexers and demultiplexers.
+A combinational circuit is a digital circuit that receives as input discrete electrical signals mapped into the logical values TRUE and FALSE, and provides as output a discrete electrical signal, also mapped into the logical values TRUE and FALSE.
+
+Ultimately, a combinational circuit is a digital circuit that implements a logic function whose output only depends on the logic values presented at the input.
+
+Attention
+From a conceptual point of view, time is not a significant factor in the design of a combinational circuit. This is because the output of the combinational circuit is practically instantaneous. In fact, the time for the circuit's result to be considered valid is the delay time of the logic gates used in the circuit.
+Design of a combinational circuit
+The design of a combinational circuit is simple, being basically developed in four steps:
+
+1
+The design of a combinational circuit is simple, being basically developed in four steps:
+
+two
+Construction of the truth table that models the problem;
+
+3
+Assembling the Karnaugh map(s);
+
+4
+Translation of the logical expression into the set of required logical gates.
+
+Step 1 – Statement of the problem
+At the entrance to a garage there is an electric gate that has a control signal that, when activated, keeps the gate open; and, when deactivated, closes the gate. We will design the combinational circuit that controls the gate as follows: There is a pressure sensor A in front of the gate which, when pressed by the car tire, should command the opening of the gate. The gate has a presence sensor B, which indicates whether there is an object under the gate. Design the combinational circuit that, based on signals A and B, controls the gate.
+
+Step 2 – Truth Table
+
+Step 3 – Assembling the Karnaugh map
+  '
+Result in reading 𝐹=𝐴+𝐵.
+
+Step 4 – Translation of the logical expression
+Transforming into logic gates, assuming the drive logic as positive logic, we have the circuit in Figure 1:
+
+
+A classic example, widely publicized in the literature, is the elevator door control system. In a three-story building, we want to automate the opening of an elevator door. There are presence sensors on each of the floors: A1, A2 and A3; and a motion sensor M. Describe the combinational circuit that allows the elevator door to open when stopped on the floor.
+
+
+Transcript for Karnaugh map:
+
+The map reading is: 𝐹=𝑀 ̅𝐴+𝑀 ̅𝐵+𝑀 ̅𝐶, which can be implemented as follows (figure 2):
+
+
+Figure 2 – Elevator door control circuit | Source: Prepared by the author, 2020.
+In electronic digital equipment, it is not possible to represent any entity other than a high or low logical level. Therefore, the association between logical level and truth value itself is a coding. Let's look at the definition of code: A code is the set of signals used to transmit and represent certain information.
+
+By definition, every time, in the domain of a problem, we establish that a certain electrical signal has a certain semantics, we are establishing a code. For example, in the design of the elevator door opening controller, we established that M=0 indicates that the elevator is stationary and M=1 indicates that the elevator is moving. Attributing semantics to the electrical signal is a simple but efficient encoding in this case, since the elevator can only be in two states: Stopped or moving.
+
+And in situations where we deal with more complex information, how should we proceed? The idea is simple, just create a binary representation for non-binary information.
+
+Example
+A good example of this situation is the text of this class. Our alphabet is naturally analog; is a set of symbols that we recognize as letters. The juxtaposition of these letters forms words, as we learned in our childhood. The letters and symbols of a language are not digital in nature; we use dozens of different symbols to represent written language. So, how to represent letters and symbols on digital equipment that is only capable of manipulating two symbols? The answer is: Through a code, such as ASCII.
+
+Before we study the ASCII code, we will check other simpler codes. Initially we will study the BCD code (Binary Coded Decimals).
+
+BCD code
+The BCD code is a four-bit code used to represent decimal digits from 0 to 9. As we have ten different digits, the minimum number of bits used to represent the information is four.
+We can find out the minimum number of bits to represent the elements of a set C by: 𝑁=[log2|C|]. Read: N is the smallest integer greater than or equal to the logarithm in base 2 of the cardinality of the set C.
+
+The BCD code is that in table 2.
+
+
+ Figure 3 – BCD Encoder | Source: Prepared by the author, 2020.
+
+An example of application of this code is reading information typed on a keyboard, such as a telephone. There are ten keys labeled 0 to 9 and a combinational circuit that receives the key pressed and provides the BCD code of the digit pressed. Let's see the scheme in figure 3.
+
+The block in the figure is an encoder, a combinational circuit that takes an uncoded input and provides the coded output. The operation of the arrangement can be explained as follows: When closing one of the input switches, the combinational circuit outputs the key label encoded in BCD. For example, when closing switch 7, considering A as the MSB (most significant bit), we would have the output A=0, B=1, C=1, D=1, which is 7 in BCD.
+
+Code Gray
+A Gray code is an n-bit binary code such that any two subsequent elements in the code are unity apart. We have already seen the concept of a sequence of unitary distant bits when we talked about the Karnaugh map. Let A and B be two bit sequences of n bits, we say that A is unity distant from B if, and only if, there is a single bit capable of differentiating sequence A from sequence B. For example: 0110 is unity distant from 0111.
+
+The main application of Gray codes is in measuring angles. It is convenient to use this code since the change in the transducer that measures the angle is continuous and, as only one bit changes throughout the movement, the possibility of errors is reduced. Gray codes are also used to label states of the main cycle of a state machine. This concept will be discussed in detail in the design of sequential circuits.
+The Gray code is constructed recursively, that is, knowing an n-1-bit Gray code, the n-bit code is constructed. Let a0 be the first bit sequence of the n-1 bit code and an-2 be the last. The n-bit code is constructed by concatenating 0 to the left of a0, followed by 0 to the left of a1, to 0 to the left of an-2, then 1 to the left of an-2, 1 to the left of an -3, up to 1 to the left of a0. Table 3 represents the construction of a four-bit code.
+
+ASCII code
+The ASCII code (American Standard Code for Information Interchange) is a code defined in the 1960s, with 7 bits, used to represent alphanumeric characters, special symbols, graphic punctuation marks and terminal control. Because the computer word is 8 bits, the ASCII code was expanded to 8 bits and the most significant bit is not used.
+
+The ASCII code became the standard for representing textual information on computers and is widely used to this day. Table 4 shows the printable ASCII Code characters.
+
+ Source: WIKIPÉDIA, 2007.
+
+MSI Combinational Circuits
+Until now, the components seen for building combinational circuits were logic gates. Logic gates are components with a low integration scale, that is, they have dozens of transistors in their internal circuits.
+
+Technological evolution in the field of materials science has allowed us, over the last few decades, to place more and more transistors on a silicon wafer. The first leap in this direction was the Medium Scale Integration (MSI) integrated circuits.
+
+There are combinational circuits in common and generic use. We can mention multiplexers, demultiplexers, adders, encoders, decoders and ROM memories. Below we will see each of these circuits and their applications.
+
+
+Multiplexers
+The concept of multiplexing is related to bringing different information together in the same physical medium, without one piece of information interfering with the other, that is, maintaining the integrity of the multiplexed information.
+An example of multiplexing is the use of the electromagnetic spectrum. For example, the part of the spectrum allocated to FM radios, from 88 MHz to 106 MHz. This frequency range houses several different radios, all transmitting simultaneously in the physical environment, without one interfering with the other. Radio A occupies a frequency range in this spectrum and radio B occupies a range different from that used by radio A. The transmitters of A and B behave like multiplexers and the receiver, which is capable of tuning into a specific frequency range, such as a demultiplexer.
+
+Figure 4, below, graphically shows the concept of multiplexing and demultiplexing.
+
+ Figure 4 – Multiplexer demultiplexer arrangements | Source: Prepared by the author, 2020.
+
+In digital electronics, multiplexers and demultiplexers have a simpler operation. Multiplexers work like a selector switch with n inputs and one output; demultiplexers, on the other hand, have a selector switch with one input and n outputs. The switches are controlled by a binary number presented at the control input. Let's see an example in figure 5.
+
+ Figure 5 – Multiplexer-demultiplexer arrangement | Source: Prepared by the author, 2020.
+
+In the figure, we have the multiplexer-demultiplexer arrangement. Each component has three groups of signals: Inputs (I input pins), outputs (O output pins) and control (A B C pins). In the figure, the multiplexer has eight inputs I0 to I7 and one output. The demultiplexer, one input and eight outputs O0 to O7. The control signal is encoded in binary and A is the most significant bit. Therefore, for the keys to provide the path shown in the figure, the binary 110, six in decimal, must be presented in the multiplexer control; The binary 010 must be displayed in the demultiplexer, two in decimal. Thus, the electrical path between input I6 and output O2 is established.
+Formally, a multiplexer is defined by the operating table. The inputs are always a number that is a power of 2, numbered from 0 to 2n-1, with n being the number of control bits. Therefore, in the example, we have three control inputs A,B,C (A is the MSB most significant bit, that is, the most significant bit; and C, the LST least significant bit, that is, the least significant bit) and eight entries. Let's look at table 5, showing how the multiplexer works:
+
+
+The table reads as follows: binary ABC is presented, output O outputs the signal presented at the input numerically equal to binary ABC. For example, if A=0, B=1, C=1, output O provides the same logical value as input I3.
+
+One use of multiplexers is the implementation of logical functions. Be it the logical function in table 6, of three variables, the implementation of the logical function using a multiplexer is very simple. Simply connect the inputs corresponding to the lines with a false logic value to 0 volts; and Vcc, the lines with a true logical value.
+
+
+ Figure 6 – Implementation of the truth table (table 6) | Source: Prepared by the author, 2020
+
+Note that in the table, rows 0, 1, 5, and 6 are false; and 2, 3, 4 and 7 are true. The implementation of the equivalent circuit using the multiplexer is shown in figure 6.
+
+Internally, a multiplexer is a combinational circuit equivalent to its operating table. For example, in figure 7, we have the internal diagram of a four-to-one multiplexer. For example, when A=1 and B=0, the logic gate E Nr 2 outputs the value presented in I2; all other logic gates AND output the logic level False. The output Or gate provides as output the result of the logical operation AND performed by gate Nr 2. This way, the path between input I2 and output O is established.
+
+Multiplexers can be cascaded, that is, they can be connected in a chain to expand functionality. For example, assuming five 4-1 multiplexers are available, we can build a circuit with the behavior of a 16-1 multiplexer. Let's see how to do this.
+
+ Figure 7 – Mux 4-1 internal diagram | Source: Prepared by the author, 2020.
+
+ Figure 8 – Multiplexer cascading | Source: Prepared by the author, 2020.
+
+To facilitate understanding, let's check the operation of the 16-1 multiplexer. In this device, we have sixteen inputs I0 to I15, controlled by input A(MSB), B, C, D(LSB), which represents, in binary, the number of the input that will be connected to the output. We have already seen this in the 8-1 mux, it is analogous.
+
+ 
+We have four 4-1 MUX, with control input A(MSB), B(LSB). We can connect the output of the four MUX 4-1 to the input of the fifth MUX 4-1, and inputs A, B receive the most significant bits of the selection. Figure 8 illustrates this connection.
+
+Let's analyze what happens if we present A=0, B=1, C=1, D=1. In all four multiplexers on the left, the received control signal is 11, causing all four multiplexers to present, at their output, the signal I3 (number 3 in the figure). On the other hand, the multiplexer on the right receives control signal 01, meaning that, only at the output of the array, the output signal of the second multiplexer is presented from top to bottom in the left column. Figure 9 shows the highlighted path.
+
+ Figure 9 – Cascading operation | Source: Prepared by the author, 2020.
+As we have seen, demultiplexers have the function of switching an input to several outputs. Since the control is a binary number, an n control bit demultiplexer has 2n outputs identified by O0 through O2n-1. Table 7 exemplifies a 1-8 demultiplexer.
+
+
+The semantics of Table 7 is that the On output provides the logic level presented at input I, if the control binary is equivalent to n in base 10. For example, case (MSB)A=0, B=1, (LSB)C =1, output O3 will provide the same value presented in I.
+
+Just like multiplexers, demultiplexers can be cascaded. Let's look at an example of cascading a 1-2 demultiplexer and two 1-8 demultiplexers, providing the behavior of a 1-16 demultiplexer. Figure 10 shows the arrangement.
+
+ Figure 10 – Demultiplexer cascading | Source: Prepared by the author, 2020.
+
+ Figure 11 – Activating the arrangement | Source: Prepared by the author, 2020.
+
+Assuming that the signal A=0, B=1, C=0, D=1 is presented to the array, demux U11 activates output 0, and both demuxes U12 and U13 activate output 5. However, the signal presented in U11 input is only displayed at U11 output; for this reason, only the Demus U11 output is activated (see figure 11, below).
+
+An important application of demultiplexers is the organization of memory banks in computers. Suppose we have four 1 Kbyte memory chips and we want a memory bank with 4 Kbytes. Just for leveling purposes, to access the addresses of a 1 Kbyte chip, we need 10 bits, a0 ... a9, with the first memory address of the chip being 0000000000 and the last one being 1111111111. To address 4 Kbytes we need 12-bit, a0 ... a11. The problem is: How to map the 12 bits necessary to uniquely address each memory address on 1 Kbyte chips that only have 10 addressing bits?
+
+ Figure 12 – 1 Kbyte memory chip | Source: Prepared by the author, 2020.
+
+The answer is: Using a 1-4 demultiplexer. Let's understand this. Every memory chip has a control signal called CS (chip select). The function of this signal is to activate the chip's response, that is, the chip only responds to commands if CS=1. Figure 12 represents the Chip.
+
+ Figure 13 – 4 Kbyte memory bank with 1 Kbyte chips | Source: Prepared by the author, 2020.
+
+In figure 13 we use a 1-4 demultiplexer to activate the correct memory chip, when a10=0 and a11=0, we activate the U14 chip, when a10=1 and a11=0 we activate the U15 chip, and so on.
+A hypothetical bank branch has two managers: A and B. During working hours, any manager can open the safe, however, outside working hours, only with the presence of both managers can the safe be opened. A special clock provides the following information: C is false if h < 10:00; and true otherwise; and D is false if h < 16:00; and true otherwise. Design the combinational circuit that opens the safe door.
+
+haha
+Step 1: Understanding the statement.
+
+Step 2: Assembling the truth table:
+
+
+Step 3: Karnaugh Map:
+
+
+Step 4: Logic circuit:
+
+
+2. Build a 1-8 Demux using two 4-1 demultiplexers and digital logic.
+
