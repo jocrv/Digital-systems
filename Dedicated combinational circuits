@@ -1,0 +1,329 @@
+encoders and decoders, which are general-purpose integration medium-scale combinational circuits. In addition to them, we will see other combinational circuits, capable of performing arithmetic addition and subtraction operations.
+
+ 
+We will also see one of the main components of a Central Processing Unit (CPU) of a modern computer, the Arithmetic and Logic Unit (ALU), which is a combinational circuit.
+
+Goals
+Describe encoders and decoders with examples;
+Explain the representation of integers in binary;
+Identify the complete adder and subtractor.
+What are encoders and decoders?
+Encoders are combinational circuits that take raw signals, a set of distinct signals with correlated semantics, and transform these signals into a code.
+The classic example of an encoder is responsible for receiving signals from ten keys labeled 0 to 9 and encoding this signal in BCD. We will see this encoder later.
+
+A decoder is a dedicated combinational circuit that receives encoded information and transforms that information into a set of raw signals with correlated semantics.
+
+The best way to understand the function of a decoder is through an example. Later on, we will study the decoder for seven-segment displays. Follow along.
+
+Encoders
+We have already mentioned the decimal coder, which is the one that receives signals from ten keys labeled 0 to 9 and encodes them in BCD. Schematically, it is represented by figure 1.
+
+Figure 1 – Decimal encoder – BCD | Source: Prepared by the author, 2020
+
+See below the simplified operating table of this encoder (table 1). Note that, as there are ten distinct entries, if we were to build the complete truth table, we would have 1024 rows = 210.
+
+
+The ten lines represented in the table indicate the behavior of the encoder. All the other 1014 lines are not relevant, since pressing two or more keys simultaneously is completely anomalous behavior.
+
+We will not present the circuit of this encoder because manipulating ten variables is complex. Commercially, it is sold in the family of TTL integrated circuits, such as 74147, whose internal circuit is that of figure 2
+
+Figure 2 – 74147 Encoder | Source: TEXAS INSTRUMENTS, 2004
+
+Figure 2 – 74147 Encoder | Source: TEXAS INSTRUMENTS, 2004.
+
+One family of encoders is of particular interest. This is the family of transcoders. A transcoder is an encoder that translates one code into another. For example, it may be useful to transcode a three-bit Gray code into a 3-bit binary. The transcoder specification is a table of input and output codes. In the case of the example we are dealing with, table 2 shows the transcoding.
+
+The next step is to design the combinational circuits equivalent to functions F1, F2 and F3. The F1 function is trivial. Column F1 is the same as column A, so 𝐹=𝐴. F2 and F3 need to be analyzed, so let's go to the maps. Map 1 and map 2 of F2 and F3 respectively:
+
+
+Attention
+We must be careful when filling out maps 1 and 2. Note that the transcoder's truth table is not filled in in the usual order, so filling out the map has to be done by carefully interpreting each line. For example, in line 5 (A=1, B=1, C=0), F2 has a value of 0 and so does F3. These values must be conveniently placed on maps. The order was highlighted by coloring the lines.
+
+Reading the maps, we have: F2=A⎯⎯⎯B+ AB and F3=AB⎯⎯⎯⎯⎯C+ ABC+ABC⎯⎯⎯⎯⎯
+�
+two
+=
+�
+¯
+�
++
+ 
+�
+�
+ 
+�
+ 
+�
+3
+=
+�
+�
+¯
+�
++
+ 
+�
+�
+�
++
+�
+�
+�
+¯
+ 
+ 
+. Based on the methodology we saw, the next step would be the composition of ports for designing the electrical scheme. But let's look at the F2 and F3 functions a little better.
+The F2 function is 𝐹2=𝐴⨁𝐵. Algebraically manipulating F3, we have: 𝐹3=𝐶(AB⎯⎯⎯⎯⎯
+�
+�
+¯
+  +𝐴𝐵)+ C⎯⎯⎯ (A⎯⎯⎯B + AB⎯⎯⎯)
+�
+¯
+ 
+(
+�
+¯
+�
+ 
++
+ 
+�
+�
+¯
+)
+  . Let's remember that: 𝐴⨁𝐵=A⎯⎯⎯B
+�
+¯
+�
++ AB⎯⎯⎯
+�
+�
+¯
+  and that 𝐴⨀𝐵= AB⎯⎯⎯⎯⎯
+�
+�
+¯
++𝐴𝐵 and that A⊕B⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯=A⊙B
+�
+⊕
+�
+¯
+=
+�
+⊙
+�
+. For this reason, 𝐹3=𝐶(𝐴⨀𝐵)+C⎯⎯⎯
+�
+¯
+(𝐴⨁𝐵)=𝐶(A⊕B⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+�
+⊕
+�
+¯
+  )+ C
+�
+  (𝐴⨁𝐵)=𝐴⨁𝐵⨁𝐶. Simplifying the transcoder hardware greatly (figure 3), we have:
+
+ Figure 3 – Transcoder hardware | Source: Prepared by the author, 2020
+
+Attention
+Note that the calculation of 𝐴⨁𝐵 was reused for the calculation of F3. This is desirable whenever possible, as it reduces the number of logic gates involved in the circuit.
+
+
+Decoders
+ Figure 4 – Seven-segment display | Source: KINGBRIGHT, 2019
+
+Let's go back to the seven-segment display decoder. It is an arrangement of Light Emitting Diodes (LEDs). By turning on a subset of these LEDs, we can visualize a numeric digit. Figure 4 illustrates a seven-segment display.
+
+The idea of the decoder is simple, receive the digit encoded in BCD and light up the display segments to form the image of the digit. For example, when receiving 0000, zero in BCD, segments a, b, c, d, e, f should be activated (will light up). Table 3 illustrates how the arrangement works.
+
+
+Transforming the seven outputs into Karnaugh maps and solving them, we have the following circuit (figure 5):
+
+ Figure 5 – Seven-segment decoder (7448) | Source: MOTOROLA, s. d.
+Arithmetic Circuits
+To understand well how arithmetic circuits work, we need to understand how to perform arithmetic operations without using signs (+ or –). Remember that it is only possible to represent high and low electrical signals, 0 or 1, in a combinational circuit by convention.
+
+As a first step, we will look at the sum in base 10, the one we learned in our literacy classes. Let's look at an example:
+
+We learned that the sum is made from the least significant digit to the most significant, applying the sum table. When the sum of two digits exceeds ten, we apply the trick of going one to the next digit. In figure 6, the sum of the first two digits is 2 + 9 = 11; thus, the result, for the first digit, is 1 to 1. The next digits added are 1 + 7 + 2 = 10, that is, 0 to 1.
+
+ 
+
+If we had a digit-by-digit adding machine, the machine would have as input the number 1, the digit of the first installment and the digit of the second installment, that is, three inputs; and, as output, the digit of the sum result is 1.
+
+ 
+
+In base 2, we apply the same algorithm, what changes is the multiplication table. Table 4 is the multiplication table in base 2. We call it carry in (comes 1) and carry out (goes 1).
+
+
+To design a circuit capable of performing the sum of two bits, we need to design two combinational circuits. The first calculates the sum and the second the carry out. Maps 3 and 4 minimize logical expressions.
+
+
+The reading of map 3 is S=A−B−C+A−BC−+ABC+A−BC−
+�
+=
+�
+-
+�
+-
+�
++
+�
+-
+�
+�
+-
++
+�
+�
+�
++
+�
+-
+�
+�
+-
+. Manipulating algebraically: 𝑆=𝐶(AB⎯⎯⎯⎯⎯+𝐴𝐵)+C⎯⎯⎯(AB⎯⎯⎯⎯⎯+AB⎯⎯⎯ )=𝐴⊕𝐵⊕𝐶.
+ 
+𝑆
+=
+𝐶
+(
+�
+�
+¯
++
+𝐴
+𝐵
+)
++
+�
+¯
+(
+�
+�
+¯
++
+�
+�
+¯
+ 
+)
+=
+𝐴
+⊕
+𝐵
+⊕
+𝐶
+.
+ 
+The reading of map 4 is 𝐶𝑜=𝐵𝐶+𝐴𝐵+𝐴𝐶. Manipulating algebraically, we have:
+
+𝐶𝑜=𝐴𝐵+𝐶(𝐴+𝐵)
+
+𝐶𝑜=𝐴𝐵+𝐶(𝐴+A⎯⎯⎯
+�
+¯
+B)
+
+𝐶𝑜=𝐴𝐵+𝐶𝐴+𝐶A⎯⎯⎯
+�
+¯
+B
+
+𝐶𝑜=𝐴(𝐵+𝐶)+𝐶A⎯⎯⎯
+�
+¯
+B
+
+𝐶𝑜=𝐴(𝐵+B⎯⎯⎯
+�
+¯
+C)+𝐶A⎯⎯⎯
+�
+¯
+B
+
+𝐶𝑜=𝐴𝐵+𝐴B⎯⎯⎯
+�
+¯
+C+A⎯⎯⎯
+�
+¯
+B𝐶
+
+𝐶𝑜=𝐴𝐵+𝐶(𝐴B⎯⎯⎯
+�
+¯
++A⎯⎯⎯
+�
+¯
+B)
+
+𝐶𝑜=𝐴𝐵+𝐶(𝐴⨁𝐵)
+
+Algebraic manipulation results in a simpler circuit. Figure 7 is the electrical diagram of this circuit called bit slice full adder.
+
+Figure 7 – Bit slice full adder | Source: Prepared by the author, 2020
+
+We use the bit slice full adder to add an arbitrary number of bits. For example, to add two four-bit numbers, we employ four bit slice adders as shown in figure 8. The unit on the right adds the least significant bits.
+Figure 8 – 4-bit adder using bit slice adders | Source: Prepared by the author, 2020
+
+Subtraction
+The process of calculating subtraction is similar to that of addition. The algorithm is executed from the least significant digit to the most significant, subtracting, digit by digit, according to the subtraction table. Let's see an example in figure 9.
+
+The process of calculating subtraction is similar to that of addition. The algorithm is executed from the least significant digit to the most significant, subtracting, digit by digit, according to the subtraction table. Let's see an example in figure 9.
+
+Figure 9 – Subtraction | Source: Prepared by the author, 2020.
+
+The example in figure 9 illustrates the main problem of the subtraction algorithm, borrowing. Note that, right from the first digit, it is not possible to subtract 0 – 2, so it is necessary to borrow the next digit of the subtraction, and this effect is cascading, that is, it propagates throughout the number. Propagable borrowing is a complicating factor in subtractor design. The question is: Is there a way to perform the subtraction without borrowing it? Answer: Yes, we will see how.
+
+Let's analyze the subtraction in figure 10. The result of this operation is the same as the operation performed in figure 9, except 10000, that is, 10058 instead of 58.
+
+Figure 10 – Subtraction | Source: Prepared by the author, 2020.
+
+Figure 11 – Subtraction | Source: Prepared by the author, 2020.
+
+If we write 10000 as 9999 + 1, the operation is rewritten as in figure 11.
+
+Note that if we subtract 9999-942, we do not need to borrow. Thus, the circuit that will perform this operation becomes much simpler and the subtraction becomes the sum in figure 12.
+
+Figure 12 – Subtraction transformed into sum | Source: Prepared by the author, 2020.
+
+Figure 13 – Subtraction from 26 – 19 = 7 | Source: Prepared by the author, 2020.
+
+Neglecting the excess 10000, we have the desired result, 58, without needing to borrow it. We will see how this works in base 2. We will see the subtraction of the binaries in figure 13.
+
+Applying analogous reasoning, we have the subtraction of figure 14.
+
+Figure 14 – Subtraction transformation | Source: Prepared by the author, 2020.
+
+Figure 15 – Subtraction transformed into sum | Source: Prepared by the author, 2020
+
+Let's now look at the subtraction 11111 – 10011 = 01100. Note that it is equivalent to negating the digits of 10011. Thus, the execution is simple, as it is enough to pass the digits into an inverter. Now, the subtraction became the sum in figure 15.
+
+Thus, the result of the subtraction is 00111 with an excess of 100000, as occurred in base 10. This result shows that the subtractor circuit is the same as the adder, adding only an inverter at one of the inputs. Figure 16 shows a 4-bit subtractor. The summing unit on the right subtracts the least significant bit. Note that we use the carry in of the least significant bit to include the extra portion of the 1. Therefore, the carry in of the least significant bit is connected to Vcc.
+
+ Figure 16 – 4-bit subtractor, calculates B-A | Source: Prepared by the author, 2020
+
+Using the adder as a subtractor is very efficient. We have a single piece of hardware capable of performing addition and subtraction operations. Therefore, we use the method described as a way to represent negative integers. This form of representation is called two's complement and consists of what we did with the subtrahend to perform the subtraction. That is, to represent a number in two's complement, we negate its bits and add one unit.
+
+Attention
+An important observation is that this form of representation is only valid for a fixed number of bits, previously defined. For example: with 8 bits, the number 53 is represented as 00110101. The number –53 is represented as 11001010 + 1 = 11001011.
+Another important observation is that the most significant bit in the two's complement representation indicates the sign of the number. Thus, every number with MSB equal to one is negative. For example: 11100101 is a negative number. To determine its value in modulus, we carry out the two-complementation process, that is, we negate its bits and add one. For the example, Not (11100101) = 00011010 + 1 = 00011011 = 51. Thus 11100101 represents the number –51.
+
+The crowning achievement of the study of combinational circuits is the design of a Bit Slice Logic and Arithmetic Unit (ALU). This unit is capable of performing the operations: AND, OR, NOT and sum. Figure 17 illustrates the circuit.
+
+ Figure 17 – Bit slice Arithmetic Logic Unit | Source: TANENBAUM, 2007
+
+In figure 17, we see the main modules of an ALU. We have the function decoder, which receives two bits F0 and F1, which determine the operation that will be performed: 00 – AND, 01 – OR, 10 – NOT and 11 – Sum. The inputs are A and B. There is an INVA control signal responsible for inverting the input bit A and, thus, implementing the bit slice subtractor, the back and forth, as well as the control signals to enable the input of the bits A and B.
+
+Activities
+1- Using a 4-16 decoder, find the three logical functions NrANrB, depending on the decoder outputs, which compare two 2-bit numbers, represented by the decoder input bits NrA = A,B and NrB = C,D . Remember that A is the most significant bit of input.
+Decoder operation table and comparator output
+The sum of two positive numbers cannot result in a negative number, just as the sum of two negative numbers cannot result in a positive number. This situation, when it occurs, characterizes an overflow, that is, an abnormal result that the hardware cannot handle. Considering the 4-bit adder arrangement, composed of the cascade of four bit slice adders, find the minimum canonical expression of the functionality that checks overflow, that is, when the sum of two positive numbers or two negative numbers presents the described anomalous result.
+
+The
+Suggested answer sheet: Let's build the truth table with the most significant bits of the two numbers A, B and the most significant bit of the result C, with the overflow being zero, when they are coherent, and 1 otherwise.
