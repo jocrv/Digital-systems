@@ -239,3 +239,322 @@ reading 𝐶.
 The other grouping is composed of the terms: A0B1C0, A1B1C0, A0B1C1 and
 A1B1C1. The variable that remains in the four terms is B1, resulting in the reading 𝐵. Thus, the map reading is the conjunction of the terms read, resulting in: 𝐹 = 𝐵 +
 𝐶.
+
+We will study the Karnaugh Map, a graphical simplification method created by Edward Veitch and perfected by telecommunications engineer Maurice Karnaugh.
+
+We will see the theoretical basis that makes the abacus viable, capable of, from Truth Tables, constructing minimal canonical expressions.
+
+We will also learn how to apply the abacus in situations with four logical variables.
+
+Goals
+Assemble four-variable Karnaugh Maps;
+Apply the Karnaugh map to obtain minimal canonical logical expressions from four-variable tables;
+Explain the concept of Don’t care and special situations in Karnaugh Maps.
+We saw how to apply the Karnaugh Map abacus to find the minimum canonical form for logical functions of two and three variables.
+
+ 
+In this class, we will see how to apply the abacus to find the minimum canonical form in functions of four variables.
+
+We already know that the Karnaugh Map derives from the diagram, discovered by Karnaugh, that shows all unitary distant binaries of, in this specific case, four bits (diagram 1).
+
+ Diagram 1 – 4-bit unitary far binaries. Source: Prepared by the author, 2020.
+
+Let's remember that each binary is associated with a term in the truth table of the logical function for which we want to find the minimum canonical expression. For example: Binary 1001 represents the term: ABCD
+�
+�
+�
+�
+. That said, let's look at the map assembly:
+
+ Map 1 – Four-variable Karnaugh map. Source: Prepared by the author, 2020.
+
+To illustrate how to assemble the map, we will use truth table 1 as an example, with four variables.
+
+ Truth table 1 – Logical function of four variables. Source: Prepared by the author, 2020.
+
+The translation of the truth table into the Karnaugh Map is similar to what we saw in the 2- and 3-variable maps, the truth value of each term in the table is placed in the binary associated with the term. For example: The term 𝐴𝐵 ̅𝐶𝐷 is associated with the binary 1011.
+.
+
+ Map 2 – Four-variable Karnaugh map. Source: Prepared by the author, 2020.
+
+Comment
+Let us remember that, in the Karnaugh Map, 0 is FALSE and 1 is TRUE, as was said in the previous class, this is a convention. Let's not get confused with logic levels 0 and 1, which are differences in electrical potential that activate the logic gate circuits.
+
+Map Reading
+The process of reading the four-variable Karnaugh Map is similar to the three- and two-variable ones. As we saw in the previous class, a Karnaugh Map of k variables admits groupings of 2k, 2k-1, ..., 20 1s.
+
+Grouping of sixteen 1s
+The grouping of sixteen 1s is analogous to the grouping of eight 1s in the three-variable map and four 1s in the two-variable map.
+
+As we have seen, the 2k 1 grouping only occurs when the logical function is a tautology, that is, the function's truth table has all rows with a truth value of TRUE.
+
+Grouping of eight 1s
+In the example map (map 2) we have the possibility of grouping eight 1s. The grouping of eight 1s occurs in the example map as highlighted in map 3.
+
+ Map 3 – Grouping of eight variables in horizontal mode. Source: Prepared by the author, 2020.
+
+Let's read the grouping of map 3:
+ABCD+ABCD+ABCD+ABCD+ABCD+ABCD+ABCD+ABCD=D(ABC+ABC+ABC+ABC+ABC+ABC+ABC+ABC) = D(AB(C+C)+AB(C+C)+AB(C+C)+AB(C+C))=D(AB+AB+AB+AB) = D(A(B+B)+A(B+B))=D(A+A)=D
+Also as we saw in the last class, the Karnaugh Map aims to not perform algebraic manipulation. The reading is done by finding the variable that does not have its logical value changed in all 1s of the grouping. In this grouping we have: A0B0C0D1, A0B0C1D1, A0B1C0D1, A0B1C1D1, A1B1C0D1, A1B1C1D1, A1B0C0D1, A1B0C1D1: Note that D does not have the logical value negated in all 1s in the grouping. As expected, the group reading is D.
+
+In the example itself there is another grouping of eight 1s. Let us remember that the ends of the map are unitary apart, so the grouping of map 4 is a grouping of eight 1s.
+
+ Map 4 – Grouping of eight variables in horizontal mode. Source: Prepared by the author, 2020.
+
+Reading is done in the same way, the terms for each 1 in the grouping are: A0B0C0D0, A0B0C0D1, A0B0C1D1, A1B0C0D0, A1B0C0D0, A1B0C0D1, A1B0C1D1, A1B0C1D0. Highlighted, we have variable B with the logical value negated; thus, the cluster reading is B
+�
+.
+
+Grouping of four 1s
+In the example, we have a grouping of four 1s. Map 5 highlights this grouping.
+
+ Map 5 – Grouping of four 1s square mode. Source: Prepared by the author, 2020.
+
+The reading is done in a similar way, simply highlighting the terms corresponding to each 1 in the group: A1B1C1D1, A1B1C1D0, A1B0C1D1, A1B0C1D0. It is observed that variables A and B are present in all terms with the same truth value, thus, the reading is 𝐴𝐶.
+
+The grouping of four 1s can be linear, as we can see in map 6.
+
+ Map 6 – Grouping of four 1s linear mode. Source: Prepared by the author, 2020.
+
+The reading is A0B0 C1D1 , A0B1 C1D1 , A1B1 C1D1 , A1B0 C1D1 , resulting in the term: 𝐶𝐷
+
+ 
+On the same map 6, there is another group of four 1s, open to the sides. For teaching purposes, map 5 will be transcribed into map 7.
+
+ Map 7 – Grouping of four 1s open mode to the sides. Source: Prepared by the author, 2020.
+
+Highlighting the terms, A0B0C1D1, A0B0C1D0, A1B0C1D1, A1B0C1D0, we have the reading: BC
+�
+�
+.
+
+There is a fourth grouping of four 1s: Those at the edge of the map, transcribed in map 8.
+.
+
+ Map 8 – Grouping of four 1s at the ends. Source: Prepared by the author, 2020.
+
+This grouping is valid since the binaries at the ends of the rows and columns are unitary apart.
+
+The reading of map 8 is: A0B0C0D0, A0B0C1D0, A1B0C0D0, A1B0C1D0, resulting in the term: BD
+�
+�
+.
+
+Grouping of two 1s
+The grouping of two 1s is very similar to what we saw in the maps with two and three variables, and can be: Vertical, horizontal and open at the ends, as in the map with three variables. Let's look at an example with the three possibilities in map 9.
+
+ Map 9 – Grouping of two 1s. Source: Prepared by the author, 2020.
+
+In map 8, grouping A is horizontal, the terms corresponding to the 1s are A0B0C1D1 and A0B1C1D1, resulting in the reading: ACD
+�
+�
+�
+. Grouping B is vertical, the terms corresponding to the 1s are: A0B1C0D1 and A0B1C1D1, resulting in the reading ABD
+�
+�
+�
+. Finally, grouping C is open at the ends and results in the terms: A1B0C0D0 and A1B0C1D0, reading: ABD
+�
+�
+�
+.
+
+Grouping of 1 isolate
+The last type of grouping is that of isolated 1, which is read directly. Map 10 shows an example.
+
+ Map 10 – Group of 1 isolated. Source: Prepared by the author, 2020.
+
+The reading of the term is A0B0C0D0, resulting in the term: ABCD
+�
+�
+�
+�
+.
+
+The 1-clustering algorithm is similar to the three-variable map and is described as:
+:
+
+
+The last step of the abacus is reading. Each grouping is a term of a conjunction, thus ending the abacus.
+
+As an example, let's perform the complete abacus on the logical function represented by truth table 1, which results in map 1, transcribed below for teaching purposes (map 11):
+
+ Map 11 – Example map. Source: Prepared by the author, 2020.
+
+Reading:
+Group A: B
+�
+;
+Group B: D
+�
+;
+Group C: AC
+�
+�
+;
+resulting in the logical function F=B +D +AC
+�
+=
+�
+ 
++
+�
+ 
++
+�
+�
+.
+
+
+The term X – not relevant or Don’t care
+In some situations, some entries in the truth table of a Logical Function may not make practical sense. This occurs when the combination of logical input values does not make sense in the semantics of the problem being solved by the logical function.
+
+When this occurs, we insert the value X into the truth table of the logical function instead of 0 or 1. This occurs so that, when grouping, we use X in the most convenient way possible. That is, if it is advantageous, we consider X as 1; otherwise, we consider X as 0.
+
+Example
+Let's imagine a 6-story building: One ground floor (0), three commercial buildings (1, 2 and 3) and the last two (4 and 5) residential. For safety reasons, the elevator can be configured to answer calls for residential or commercial use only. The circuit that decides whether the call will be accepted receives four logical signals: The R signal which, if true, indicates that the elevator will only serve residences and, otherwise, commercial floors; and A, B, C is a three-bit binary number indicating the calling floor. The output of the logical function F is V, if the call is accepted, and 0, otherwise.
+EXAMPLE 1
+Let's imagine a 6-story building: One ground floor (0), three commercial buildings (1, 2 and 3) and the
+last two (4 and 5) residential. For safety reasons, the elevator can be
+configured to answer calls for residential or commercial use only. O
+circuit that decides whether the call will be accepted receives four logical signals: The R signal
+which, if true, indicates that the elevator will only serve residences and, if
+otherwise, the commercial floors; and A, B, C is a three-bit binary number indicating
+the calling floor. The output of the logical function F is V, if the call is accepted, and 0,
+otherwise.
+Assembling the truth table, we have:
+Table 2 – Logical Function Example
+A B C R F
+F F F F V Ground floor, serviced by use
+F F F V V commercial or residential.
+F F V F V 1st floor, commercial
+F F V V F
+F V F F V 2nd floor, commercial
+F V F V F
+F V V F V 3rd floor, commercial
+F V V V F
+V F F F F 4th floor, residential
+V F F V V
+V F V F F 5th floor, residential
+V F V V V
+V V F F
+V V F V X binaries 110 and 111 (6 and 7)
+V V V F
+two
+V V V V X do not exist, therefore, the
+function F is irrelevant.
+Source: Prepared by the author, 2020.
+Transcribing the table, we have map 12:
+00 01 11 10
+00 1 1 X 0
+01 1 0 X 1
+11 0 0 X 1
+10 1 1 X 0
+Map 12 – Transcription of table 2.
+Source: Prepared by the author, 2020.
+Resulting in the reading: 𝐹 = 𝐴̅𝐵̅𝐶̅+ 𝐴̅𝑅̅ + 𝐴R
+The example shows the practical use of Don’t care, X on the map. Note that for floors that do not exist in the building, we use X in the function and group it according to convenience. In map 12, we use the X values as 1s, to minimize the logical expression of the function.
+
+The last observation about Karnaugh Maps is that the result needs to be criticized before it is accepted. The algorithm shown may result in non-optimal readings. Let's look at an example. Let the following map be (map 13):a
+
+
+ Map 13 – Pathological case. Source: Prepared by the author, 2020.
+
+By the algorithm, we must group the four central 1s first, resulting in map 14.
+
+ Map 14 – Pathological case grouping of four 1s. Source: Prepared by the author, 2020.
+
+Then, group the 1s not yet grouped into pairs, resulting in Map 15.
+
+ Map 15 – Pathological case grouping of double 1s. Source: Prepared by the author, 2020.
+
+According to the algorithm presented, all 1s are grouped and we can read the minimal canonical form, resulting in the function F=BD + ABC + ACD + ABC + ACD
+�
+=
+�
+�
+ 
++
+ 
+�
+�
+�
+ 
++
+ 
+�
+�
+�
+ 
++
+ 
+�
+�
+�
+ 
++
+ 
+�
+�
+�
+, which, as we have seen, is minimal due to the application of the abacus. But is this actually true?
+
+ 
+Let's manipulate it algebraically:
+F=BD(A+A) (C+C)+ ABC + ACD + ABC + ACDF=(ABD+ABD) (C+C)+ ABC + ACD + ABC + ACDF=ABCD+ABCD+ABCD+ABCD+ ABC + ACD + ABC + ACDF=ACD(1+B)+ABC(1+D)+ABC(1+D)+ACD(1+B)F=ACD+ABC+ABC+ACD
+Note that the manipulation resulted in the same terms as F=BD+ABC + ACD + ABC + ACD
+�
+=
+�
+�
++
+�
+�
+�
+ 
++
+ 
+�
+�
+�
+ 
++
+ 
+�
+�
+�
+ 
++
+ 
+�
+�
+�
+, except the term BD
+�
+�
+. In other words, the map did not result in the minimum canonical form. Let's analyze why.
+
+Note that the first step of the abacus is to group the four central elements, which result in the term 𝐵𝐷. Next, we group the pairs. This is the application of the abacus! Is this correct? Yes, we saw that. So where is the error? There is no error, but we must analyze the results of the groupings to see if there are redundancies and whether we should eliminate them.
+
+Note that, after grouping the pairs of 1s, the grouping of the four central 1s becomes redundant since all the 1s in this grouping are grouped in pairs. Thus, the grouping of four 1s can be excluded. This results in the already known map 15, whose reading is: F=ACD +ABC+ABC+ACD
+�
+=
+�
+�
+�
+ 
++
+�
+�
+�
++
+�
+�
+�
++
+�
+�
+�
+.
+
+ Map 15 – Pathological case grouping of double 1s. Source: Prepared by the author, 2020.
