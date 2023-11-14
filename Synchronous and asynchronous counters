@@ -1,0 +1,141 @@
+They are sequential circuits that execute a state machine in a loop and have no control inputs, that is, they only receive the clock signal.
+
+A peculiar characteristic of counters is the shape of their design, which is related to synchronism. Therefore, we will look again at the concept of synchronism and how it applies to the classification of accountants.
+
+Goals
+Identify accountants;
+Identify synchronous counters;
+Identify asynchronous counters.
+Accountants
+A counter is a sequential circuit that implements a state machine that contains a single cycle and does not depend on external variables to change state. That is, at each clock cycle, the counter changes to the next state.
+
+ 
+See below a state machine of a BCD counter. Note that there is no control over the state transition. With each clock cycle, the automaton evolves to the next state.
+
+
+ Figure 1 – BCD counter | Source: The author (2020).
+
+The applications of counters are diverse, for example, we can use them to divide frequencies by powers of 2. For example, a clock is the aggregation of several counters. In addition to this, there are other classic applications for accountants.
+
+Synchronous counters
+Let's look at the application of clock division a little deeper. Let it be a JK flip-flop, configured as shown below.
+
+ Figure 2 – JK Flip-Flop in toggle | Source: The author (2020).
+
+The way it is configured, the JK flip-flop behaves like a toggle, that is, with each clock pulse, it inverts the state. That is, at each clock pulse, if the flip-flop is storing zero, it will store one and vice versa. Considering that the flip-flop changes state on the rising edge of the clock, we have the circuit timing diagram, as follows:
+
+ Figure 3 – Circuit timing diagram in figure 1 | Source: The author (2020).
+
+Attention
+Note that since the period of the signal at the Q output of the flip-flop is twice the clock period, the frequency of the signal output at Q is half the clock frequency. Thus, a flip-flop configured in this way divides the clock frequency by two.
+
+We previously saw the concept of synchronism, which is the well-defined temporal relationship between events that are not necessarily simultaneous. Simultaneity is synchronism, however, events with a well-defined temporal discrepancy are synchronous. This is the comprehensive concept of synchronism, present in dictionaries.
+In sequential circuits, we say that a circuit is synchronous when the transition of all memory elements is simultaneous. However, there is a small delay between the clock transition and the memory element transition. This delay occurs due to a physical (electrical) phenomenon of electronic components and there is no component that does not have this delay. Until then, we ignored this characteristic because, until now, it was not relevant.
+
+  The circuit in figure 2 is synchronous, the JK flip-flop changes state when the rising edge of the clock is presented to it. All the circuits we saw in the previous class too, including the traffic signal controller, which is completely synchronous.
+
+know more
+The circuit of a counter is no different, from a conceptual point of view, from any other sequential circuit. It is composed of two blocks: The next state decoder and the memory elements. To illustrate, let's design an octal1 counter
+
+The state machine is shown below:
+
+ Figure 4 – Octal counter | Source: The author (2020).
+
+By performing the sequential circuit design steps, we will build the next state decoder table (below). To do this, we will consider A the most significant bit and C the least significant bit of the octal digit representation.
+
+ Table 1 – Octal counter next state decoder. Source: The author (2020).
+
+The next step is the construction of the decoder's Karnaugh maps.
+
+Map 1 – Map of Ja. Source: The author (2020).
+
+Map 2 – Ka Map. Source: The author (2020).
+
+The map reading is: 𝐽𝑎=𝐵𝐶
+
+The map reading is: 𝐾𝑎=𝐵𝐶
+
+Map 3 – Map of Jb. Source: The author (2020).
+
+Map 4 – Kb Map. Source: The author (2020).
+
+The map reading is: 𝐽𝑏=𝐶
+
+The map reading is: 𝐾𝑏=𝐶
+
+The column relating to Jc and Kc is made up of 1s and X (Don’t care). Thus, it can be interpreted as 1. Building the decoder, we have the following schematic.
+
+Figure 5 – Octal counter. Source: The author (2020).
+
+When feeding the clock input, the circuit behaves like the automaton in figure 4. The transitions occur according to the following timing diagram.
+
+ Figure 6 – Octal counter time diagram | Source: The author (2020).
+
+As we saw, the transitions occur on the rising edge of the clock, but there is a small delay between this and the change of state of the flip-flop. This is normal and occurs because of the natural delay of electronic components, being a physical effect. All three flip-flops change state at the same time, synchronously. Counters with this characteristic are called synchronous counters.
+
+Asynchronous counters
+Let's analyze once again the arrangement in figure 2, in which we have a JK flip-flop configured as toggle (J=1 and K=1). At each rising edge of the clock signal, the flip-flop inverts its state. We have already seen in figure 3 the timing diagram of this arrangement, and we have seen that the flip-flop generates a signal at the output with half the input frequency.
+
+We can use the signal generated at the Q or Q output
+�
+as a clock signal to another JK flip-flop configured as a toggle. Let's see, next, the two-bit asynchronous counter and what happens to the arrangement in the timing diagram right after.
+
+Figure 7 – Two-bit asynchronous counter.| Source: The author (2020).
+
+ Figure 8 – Asynchronous counter timing diagram.| Source: The author (2020).
+
+The diagram presents a graph of the evolution of the sequential circuit over time. Q is the output of flip-flop A, which receives the clock directly; and Q2, the output of counter flip-flop B. Note that on the rising clock transition, flip-flop A changes state after the natural transition delay of the memory element's internal electronics. We have already seen that this is perfectly normal, as the delay is due to the physical nature of the electrical circuit.
+
+Note that flip-flop B is not activated by the system clock but by the Q ̅ output of flip-flop B, which is configured in its toggle mode. On the rising edge of the signal generated in Q ̅ of flip-flop A, flip-flop B inverts its state, however this occurs at half the frequency observed at the output of flip-flop A, in addition, there is a new delay inserted in the transition of B. This is due to the fact that there has already been a delay in transition A and the transition of B also takes time. Therefore, flip-flop A makes its transition t time units after the rising edge of the clock and B makes its transition 2t time units after the rising edge of the clock.
+
+In the timing diagram, we can see the counting sequence of the circuit. The least significant digit is stored in the flip-flop that receives the clock signal directly and, with each cascade, we have a new counter digit. In the case of the two-bit asynchronous counter, we have a two-digit counter, which can count from 00 to 11.
+
+The successive states of the circuit can be seen in the time diagram, initially Q2=0 and Q=0; after the rising edge of the clock, Q2=0 and Q=1; after the next clock, Q2=1 and Q=0; finally Q2=1
+and Q=1. Then the cycle repeats itself. Note that we can cascade JK flip-flops indefinitely in this same configuration. For example, the following circuit, which is a counter from 000 to 111.
+
+Figure 9 – Asynchronous counter 000 to 111 | Source: The author (2020).
+
+Attention
+The explanation of how it works is similar to that of the two-digit counter. It is worth noting that, in this case, the C flip-flop makes its state transition 3t time units after the clock. The reason is the same reason why flip-flop B makes its transition 2t time units after the clock.
+Counters built with this characteristic are called asynchronous counters.
+
+By the definition of synchronism, the circuit behaves synchronously, that is, there is a well-defined temporal relationship between the state transition of all flip-flops. However, we say that sequential circuits are synchronous when all memory elements make their transition in t time units after the flip-flop trigger edge. Note that this does not occur with asynchronous counters.
+
+We can build asynchronous counters with 2n states easily, just cascade JK flip-flops as we did in the asynchronous counter 000 to 111. However, it is possible to build asynchronous counters with an arbitrary number of states. For this we use the asynchronous input of clear. Just reviewing, the asynchronous clear input makes the flip-flop store 0 in its memory element regardless of the clock or commands received. In other words, clear is an asynchronous signal that, when activated, causes the flip-flop to store 0 in Q.
+TITLE
+Let's design and build an asynchronous BCD counter. The counter's finite automaton is that of figure 1. The decimal digits coded in BCD have four bits and are represented by 0000 to 1001, zero to nine in binary. Therefore, we need to cascade four JK flip-flops in toggle mode, as we saw previously. The cascading diagram is as follows:
+
+ Figure 10 – Asynchronous counter with four bits | Source: The author (2020).
+
+
+The counter configured in this way will count from 0000 to 1111, certainly exceeding the original specification. The solution to the problem is to use the asynchronous clear signal. When the counter reaches the first unwanted state, which is state 1010, we must apply the asynchronous clear signal, making the flip-flops return to state 0000.
+
+Note that the least significant digit of the four-bit asynchronous counter is stored in the D flip-flop, the most significant in the A flip-flop.
+
+Asynchronous reset is done when A=1, B=0, C=1 and D=0. Therefore, we must add a combinational circuit that activates the reset when the counter reaches the undesired state. The circuit is defined by the logical expression Reset=AB ̅CD ̅. Updating the counter, we have the following circuit:
+
+ Figure 11 – BCD asynchronous counter | Source: The author (2020).
+
+
+We refer to the states stored in the flip-flops by the bit stored in Q, so we want to reset when Qa=1, Qb=0, Qc=1, Qd=0. However, we connect it to the AND port Qa, Qb
+�
+�
+, Qc and Qd
+�
+�
+. They all have a value of 1 when A=1, B=0, C=1 and D=1, causing the internal state of the counter to return to A=0, B=0, C=0 and D=0 because of the asynchronous reset.
+
+  By building the combinational circuit responsible for resetting the counter, we can transform an asynchronous counter with 2n states into a counter with the desired number of states.
+For a brief period of time, the asynchronous counter modified by the reset is in an undesired state. The time in this state is very short, basically the delay time of the AND gate that performs the RESET. Normally this transient state does not affect counter performance. However, when the designer uses this device, he must keep in mind that the counter is briefly in an undesirable state and must take measures to ensure that this does not interfere with the final behavior of the system as a whole.
+
+1. Design the synchronous counter, which behaves like the following automaton, using JK flip-flops.
+State and command transition table:
+
+
+Analyzing the table, we see that Ka = 1, Kb = 1, Jb = B and 𝐽𝑏= A
+�
+, resulting in the following circuit:
+
+
+2. Design an asynchronous counter with the following state machine cycle, using JK flip-flops with activation on the falling edge of the clock and asynchronous reset signal.
+The combinational circuit that resets the flip-flops must be activated when the asynchronous counter reaches state 11, thus, reset = AB. As the timing is on the falling edge, cascading must be done with the Q signal. The resulting circuit is as follows:
