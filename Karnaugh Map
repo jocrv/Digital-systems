@@ -70,3 +70,172 @@ and 0110 to the term A B C D
  
 . Observing the terms, we see that the only variable that has a negated logical value among them is B, and it is the simplified one in algebraic manipulation. This is no coincidence and is the reason the abacus works.
 
+Two-Variable Karnaugh Map
+As we have already seen, with two variables, each possible term in the truth table is associated with a binary. Table 1 shows how this association is made.
+
+ Table 1 – Association between the Truth Table and the Logical Expression Terms
+
+We have already seen how to translate the truth table into the logical expression, but if, for example, we had table 2, the translation would be: A B + A B.
+ 
+ 
+
+ Table 2 – Example of Logic Function
+
+Note that rows 2 and 3 of the table have truth value true and correspond to the terms: A B, A B;
+ 
+ 
+respectively. The binaries associated with these terms are 01 and 00, respectively.
+
+Let's look at the assembly of the abacus:
+
+Map 1 – Two-variable Karnaugh map.
+
+Map 2 – Karnaugh map relative to table 2.
+
+Map 1 is constructed as follows: Columns A0 are the terms in which the logical variable A is negated and A1 are the terms in which the logical variable A has its truth value preserved. The analogous happens with lines B0 and B1. Thus, for the example truth table (table 2) the map would be assembled as follows (map 2).
+Attention
+In the Karnaugh Map it is usual to use 0 and 1 in place of true and false. This is a convention. It is adopted to improve the readability of the map. However, do not confuse true with 1 or false with 0, as we have already discussed when talking about logic gates.
+
+The Karnaugh Map manipulation algorithm is to group true terms, 1 in the map, into groups of size 2k, in the largest possible size. In other words, in the 2-variable map, we must look for clusters of size 4, 2 or 1.
+
+See the Map Reading document and learn about grouping readings.
+Three-Variable Karnaugh Maps
+The abacus for three variables is similar to that for two. Therefore, the first step is assembly. Let's remember that the assembly of the Karnaugh Map is the construction of the diagram of unitary distant terms of three variables (diagram 3). We will use truth table 4 as an example, from an example logical function.
+
+ Truth table 4 – Truth table example
+
+It should be noted that the Associated Binary column is illustrative and is not part of the logical function mapped in the truth table. The three-variable Karnaugh Map is derived from diagram 3 and is assembled as follows (map 15):
+
+ Map 15 – Karnaugh Map of three variables.
+
+In map 15, each of the positions equivalent to the binaries in table 4 are equivalent to a term of a logical expression. For example, the line associated with binary 110 is equivalent to the term 𝐴𝐵𝐶 ̅. We have already seen this in the two-variable map, it is analogous. Therefore, truth table 4 is translated into the Karnaugh Map 16.
+
+ Map 16 – Karnaugh map of three variables.
+
+Map reading
+In the three-variable map, the clusters can be eight, four, two or one
+1. There is only one possibility of grouping eight 1s, which
+corresponds to a tautology (logical function always true). Map 17 shows
+this reading.
+00 01 11 10
+0 1 1 1 1
+1 1 1 1 1
+Map 17 – Grouping of eight 1s.
+Map 17 should be read as 𝐹 = 𝑉, a tautology.
+Grouping reading of four 1s
+There are two possible groupings of four 1s. The first is the map
+18.
+00 01 11 10
+0 0 1 1 0
+1 0 1 1 0
+Map 18 – Grouping of four 1s.
+The reading is analogous to what we saw in the two-variable map. The variable that is read is
+one that maintains the logical value for all binaries of the positions of the 1s in the
+map. In our example: A0B1C0, A0B1C1, A1B1C0, A1B1C1. Therefore, reading this
+grouping of four 1s is the 𝐵 term.
+A
+B
+W
+A
+B
+W
+Let's look at this through algebraic manipulation. The grouping corresponds to the expression:
+𝐴̅𝐵𝐶̅+ 𝐴̅𝐵𝐶 + 𝐴𝐵𝐶̅+ 𝐴𝐵𝐶 = 𝐴̅𝐵(𝐶̅+ 𝐶) + 𝐴𝐵(𝐶̅+ 𝐶) = 𝐴̅ 𝐵 + 𝐴𝐵 = 𝐵(𝐴̅+ 𝐴) = 𝐵.
+There is another way to group four 1s, that of map 19.
+00 01 11 10
+0 0 0 0 0
+1 1 1 1 1
+Map 19 – Grouping of four 1s.
+In map 19, each of the 1s corresponds to the terms: A0B0C1, A0B1C1, A1B1C1 and
+A1B0C1. Once again the variable that maintains the constant logical value of all
+terms is C1. Thus, the cluster reading is the term 𝐶.
+The algebraic manipulation is: 𝐴̅𝐵̅𝐶 + 𝐴̅𝐵𝐶 + 𝐴𝐵𝐶 + 𝐴𝐵̅𝐶 = 𝐴̅𝐶 (𝐵̅ + 𝐵) + 𝐴𝐶 (𝐵 + 𝐵̅) =
+𝐴̅𝐶 + 𝐴𝐶 = 𝐶(𝐴̅+ 𝐴) = 𝐶.
+There is another grouping equivalent to the first, which is non-obvious. Let's see the
+map 20.
+00 01 11 10
+0 1 0 0 1
+1 1 0 0 1
+Map 20 – Grouping of four 1s.
+This grouping is analogous to the grouping in map 18. Let us remember that the term
+000 is one unit away from 100, and the term 001 is one unit away from 101. Let's look at the
+reading of this grouping: A0B0C0, A0B0C1, A1B0C0 and A1B0C1. The variable that
+maintains the logical value in the four terms is B0, therefore, the reading of this grouping is
+𝐵̅.
+A
+B
+W
+A
+B
+W
+Reading two 1s
+Reading two 1s is analogous to what we have already seen in the two-variable map. They exist
+two possibilities: Grouping is horizontal or vertical. Remember, never
+diagonally! Map 21 shows an example with both cases.
+
+00 01 11 10
+0 0 0 1 0
+1 1 1 1 0
+Map 21 – Grouping of two 1s.
+Let's look first at the horizontal grouping, the reading is: A0B0C1 and A0B1C1. A0C1 if
+maintains both terms, giving the reading: 𝐴̅𝐶. In vertical grouping, the
+reading is: A1B1C0 and A1B1C1. A1B1 without maintains both terms, providing the
+reading 𝐴𝐵.
+Reading isolated 1s
+Reading isolated 1s is simple. Each 1 has direct reading. For example, on the map
+22, the isolated 1s read: 𝐴̅𝐵̅𝐶 and another 𝐴𝐵𝐶.
+00 01 11 10
+0 0 0 0 0
+1 1 0 1 0
+Map 22 – Group of isolated 1s.
+The 1-clustering algorithm is similar to the two-variable map,
+being described as follows:
+Step 1: Try grouping eight 1s; if all 1s are
+grouped, stop;
+• Step 2: Try grouping four 1s; if all 1s are
+grouped, stop; otherwise, try step 2 once again;
+• Step 3: If step 2 is not possible: Try grouping two 1s;
+if all 1s are grouped, stop; otherwise try step 3
+once again;
+• Step 4: If step 3 is not possible: Try grouping a single
+1; if all 1s are grouped, stop; otherwise try step 4
+once again.
+The last step of the abacus is reading, each grouping is a term of a
+conjunction, thus ending the abacus.
+EXAMPLE
+Determine the minimum canonical logical expression of the logical function of the Truth Table a
+follow.
+A B C F
+F F F F
+F F V V
+F V F V
+F V V V
+V F F F
+V F V V
+V V F V
+V V V V
+First step: Translation on the map
+00 01 11 10
+0 0 1 1 0
+1 1 1 1 1
+Note that the only false terms in table 4 correspond to A0B0C0 and A1B0C0,
+Therefore, the map is assembled this way.
+Applying the algorithm, we see that it is not possible to group eight 1s, as they cannot
+exist on the map. But we can group four together, resulting in:
+00 01 11 10
+0 0 1 1 0
+1 1 1 1 1
+There are still ungrouped 1s and looking at the map we see that it is possible
+group four more 1s, resulting in:
+00 01 11 10
+0 0 1 1 0
+1 1 1 1 1
+After this grouping, there are no more ungrouped 1s, so the algorithm
+grouping is over.
+Second step: reading
+The group of four horizontal 1s is composed of: A0B0C1, A0B1C1,
+A1B1C1 and A1B0C1. The variable that remains in the four terms is C1, resulting in
+reading 𝐶.
+The other grouping is composed of the terms: A0B1C0, A1B1C0, A0B1C1 and
+A1B1C1. The variable that remains in the four terms is B1, resulting in the reading 𝐵. Thus, the map reading is the conjunction of the terms read, resulting in: 𝐹 = 𝐵 +
+𝐶.
